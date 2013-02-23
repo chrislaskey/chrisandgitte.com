@@ -121,6 +121,11 @@
         .container .offset-by-thirteen              { padding-left: 624px; }
         .container .offset-by-fourteen              { padding-left: 672px; }
         .container .offset-by-fifteen               { padding-left: 720px; }
+
+        div.banner p{
+            font-size: 18px !important;
+            line-height: 32px !important;
+        }
     }
 
 
@@ -171,9 +176,19 @@
         .container .offset-by-fourteen,
         .container .offset-by-fifteen { padding-left: 0; }
 
-		div.header a.language { display: none; }
-		div.footer a.language{ display: block !important; }
-
+        div.header a.language { display: none !important; }
+        div.header a.logo{
+            font:26px/30px "Caecilia Roman", Georgia, Times, serif !important;
+            max-width: 100% !important;
+            width: auto !important;
+        }
+        div.header a.logo span.subheading{
+            font: 19px/30px "Caecilia Light Italic", Georgia, Times, serif !important;
+        }
+        div.banner img{ margin-bottom: 30px !important; }
+        div.banner p{ margin:0px 0px 0px 0px !important; }
+        div.footer { display: block !important; }
+        div.footer a.language{ display: block !important; }
     }
 
 
@@ -206,6 +221,15 @@
         .container .sixteen.columns,
         .container .one-third.column,
         .container .two-thirds.column { width: 420px; }
+
+        div.header a.logo{
+            font:26px/30px "Caecilia Roman", Georgia, Times, serif !important;
+            max-width: 100% !important;
+            width: auto !important;
+        }
+        div.header a.logo span.subheading{
+            font: 19px/30px "Caecilia Light Italic", Georgia, Times, serif !important;
+        }
     }
 
 

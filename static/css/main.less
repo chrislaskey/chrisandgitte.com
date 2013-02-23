@@ -14,8 +14,8 @@
 @font-serif-enhanced-light-italic: "Caecilia Light Italic", Georgia, Times, serif;
 @font-serif-enhanced-bold: "Caecilia Bold", Georgia, Times, serif;
 
-@content-color:#8b8678;
-@content-color-light:#9e9b97;
+@content-color:#7c7666;
+@content-color-light:#8b8678;
 
 @heading-color:#d08c2b;
 @heading-color:@content-color;
@@ -461,6 +461,18 @@ blockquote{
 		// margin:60px auto 40px auto !important;
 	}
 
+	.banner img{
+ 		float:left;
+		height:auto;
+		margin:-12px 70px -26px -14px;
+		max-width:100%;
+	}
+	
+	.banner p{
+		margin:30px 0px 0px 0px;
+		font:normal 23px/40px @font-serif-enhanced-light;
+	}
+
 .wrapper_main{
 	background:none;
 	// background:url('../images/structure/bg-stripe.png') top center repeat;
@@ -502,6 +514,7 @@ blockquote{
 }
 
 	.footer{
+		display:none;
 		margin:30px auto 25px auto;
 	}
 
@@ -509,7 +522,7 @@ blockquote{
 ============================================================================= */
 a.logo{
 	background:url('../images/structure/birds-logo.png') 0px 0px no-repeat;
-	color:@content-color;
+	color:@content-color-light;
 	display:block;
 	float:left;
 	font:30px/30px @font-serif-enhanced;
@@ -580,7 +593,7 @@ ul.nav{
 	}
 
 		ul.nav li a{
-			color:@content-color;
+			color:@content-color-light;
 			display:block;
 			margin:3px 10px 3px 0px;
 			padding:9px;
