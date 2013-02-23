@@ -18,15 +18,15 @@
 
 % block banner
 	% if banner
-	<div class="wrapper wrapper_banner">
-		<div class="banner container">
-			<div class="row">
-				<div class="span10 offset1">
-					{{ banner }}
+		<div class="wrapper wrapper_banner">
+			<div class="banner container">
+				<div class="row">
+					<div class="span10 offset1">
+						{{ banner }}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	% endif
 % endblock
 
@@ -46,6 +46,26 @@
 		</div>
 	</div>
 </div>
+
+% block date_banner
+	<div class="wrapper wrapper_date_banner">
+		<div class="date_banner container">
+			<div class="row">
+				<div class="span10 offset1">
+					% if language == 'en'
+						<div class="date">Sunday, September 1, 2013 at 4:00PM<br/>Spruce Point Inn Poolside Deck</div>
+						<div class="image"></div>
+						<div class="address">88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
+					% else
+						<div class="date">Zondag, September 1, 2013 at 4:00PM<br/>Spruce Point Inn Poolside Deck</div>
+						<div class="image"></div>
+						<div class="address">88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
+					% endif
+				</div>
+			</div>
+		</div>
+	</div>
+% endblock
 
 <div class="wrapper wrapper_footer">
 	<div class="footer container">

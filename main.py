@@ -10,15 +10,45 @@ app = Flask(__name__)
 
 # Routing
 
-@app.route('/<lang>/about/')
-def about(lang):
+@app.route('/<lang>/ceremony-and-reception/')
+def ceremony_and_reception(lang):
     common_page_processing()
-    return render_template('site/about.html', **g.templatevars)
+    return render_template('site/ceremony-and-reception.html', **g.templatevars)
+
+@app.route('/<lang>/wedding-party/')
+def wedding_party(lang):
+    common_page_processing()
+    return render_template('site/wedding-party.html', **g.templatevars)
+
+@app.route('/<lang>/getting-here/')
+def getting_here(lang):
+    common_page_processing()
+    return render_template('site/getting-here.html', **g.templatevars)
 
 @app.route('/<lang>/your-time-in-maine/')
 def your_time_in_maine(lang):
     common_page_processing()
     return render_template('site/your-time-in-maine.html', **g.templatevars)
+
+@app.route('/<lang>/photo-album/')
+def photo_album(lang):
+    common_page_processing()
+    return render_template('site/photo-album.html', **g.templatevars)
+
+@app.route('/<lang>/registry/')
+def registry(lang):
+    common_page_processing()
+    return render_template('site/registry.html', **g.templatevars)
+
+@app.route('/<lang>/guest-book/')
+def guest_book(lang):
+    common_page_processing()
+    return render_template('site/guest-book.html', **g.templatevars)
+
+@app.route('/<lang>/rsvp/')
+def rsvp(lang):
+    common_page_processing()
+    return render_template('site/rsvp.html', **g.templatevars)
 
 @app.route('/')
 @app.route('/en/')

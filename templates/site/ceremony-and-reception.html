@@ -1,0 +1,38 @@
+% extends "base.html"
+
+% if language == 'en'
+	% set banner = ''
+% else
+	% set banner = ''
+% endif
+
+% if language == 'en'
+	% set title = 'Ceremony and Reception'
+% else
+	% set title = ''
+% endif
+
+% block content
+	% if language == 'en'
+
+		<p>We will be getting married outside overlooking the rocky Maine coast at:</p>
+
+		<blockquote><strong><a class="external" href="http://www.sprucepointinn.com/">Spruce Point Inn</a></strong><br/>
+			88 Grandview Ave<br/>
+			Boothbay Harbor, ME 04538<br/>
+			(207) 633-4152<br/>
+			<a class="external" href="http://www.sprucepointinn.com/">http://www.sprucepointinn.com/</a><br/>
+		</blockquote>
+
+		<p>The ceremony will begin at 4:00pm. In case of rain the ceremony will be moved indoors.</p>
+
+		<h2>The Party</h2>
+
+		<p>After we are married , you will continue enjoying the coastal Maine views during the cocktail reception on the pool deck. Then we will move to Pemaquid Hall for dinner at 6pm followed by lots of dancing.</p>
+
+		<p>Also please join us for the after party at ???</p>
+
+	% else
+
+	% endif
+% endblock

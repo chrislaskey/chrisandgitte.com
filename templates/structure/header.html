@@ -1,30 +1,48 @@
+% if language == 'en'
+	% set header_subheading = 'are getting married'
+% else
+	% set header_subheading = ''
+% endif
+
 <div class="row">
 	<div class="span5 offset1">
-		<a class="logo">Chris &amp; Gitte<br/><span class="subheading">are getting married</span></a>
+		<a class="logo">Chris &amp; Gitte<br/><span class="subheading">{{ header_subheading }}</span></a>
 	</div>
 	<div class="span5">
-		% with
-			% if language == 'en'
+		% if language == 'en'
 			<a class="language language_be" href="{{ mirror_language_link }}">Vlaams</a>
-			% else
+		% else
 			<a class="language language_en" href="{{ mirror_language_link }}">English</a>
-			% endif
-		% endwith
+		% endif
 	</div>
 </div>
 
 <div class="row">
 	<div class="span10 offset1">
-		<ul class="nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Ceremony and Reception</a></li>
-			<li><a href="#">Wedding Party</a></li>
-			<li><a href="#">Getting Here</a></li>
-			<li><a href="#">Your time in Maine</a></li>
-			<li><a href="#">Photo Album</a></li>
-			<li><a href="#">Registry</a></li>
-			<li><a href="#">Guest Book</a></li>
-			<li><a href="#">RSVP</a></li>
-		</ul>
+		% if language == 'en'
+			<ul class="nav">
+				<li><a href="/{{ language }}/">Home</a></li>
+				<li><a href="/{{ language }}/ceremony-and-reception">Ceremony and Reception</a></li>
+				<li><a href="/{{ language }}/wedding-party">Wedding Party</a></li>
+				<li><a href="/{{ language }}/getting-here">Getting Here</a></li>
+				<li><a href="/{{ language }}/your-time-in-maine">Your time in Maine</a></li>
+				<li><a href="/{{ language }}/photo-album">Photo Album</a></li>
+				<li><a href="/{{ language }}/registry">Registry</a></li>
+				<li><a href="/{{ language }}/guest-book">Guest Book</a></li>
+				<li><a href="/{{ language }}/rsvp">RSVP</a></li>
+			</ul>
+		% else
+			<ul class="nav">
+				<li><a href="/{{ language }}/">Thuis</a></li>
+				<li><a href="/{{ language }}/ceremony-and-reception">Ceremonie and Receptie</a></li>
+				<li><a href="/{{ language }}/wedding-party">Bruiloft Leden</a></li>
+				<li><a href="/{{ language }}/getting-here">Bereikbaarheid</a></li>
+				<li><a href="/{{ language }}/your-time-in-maine">Uw tijd in Maine</a></li>
+				<li><a href="/{{ language }}/photo-album">Foto Album</a></li>
+				<li><a href="/{{ language }}/registry">Registry</a></li>
+				<li><a href="/{{ language }}/guest-book">Gastenboek</a></li>
+				<li><a href="/{{ language }}/rsvp">RSVP</a></li>
+			</ul>
+		% endif
 	</div>
 </div>

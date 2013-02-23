@@ -1,0 +1,44 @@
+% extends "base.html"
+
+% if language == 'en'
+	% set banner = ''
+% else
+	% set banner = ''
+% endif
+
+% if language == 'en'
+	% set title = 'Getting Here'
+% else
+	% set title = ''
+% endif
+
+% block content
+	% if language == 'en'
+
+		<h2>Directions to Spruce Point Inn</h2>
+
+		<h3>From points south (Boston)</h3>
+
+		<ul>
+			<li>Take I-95 North to Portland.</li>
+			<li>As you are approaching Portland, take Exit 44 toward I-295 North</li>
+			<li>After 28 miles, take Exit 28 to merge onto Rt. 1 South toward Coastal Route/Brunswick Bath.</li>
+			<li>Turn left in downtown Brunswick to stay on Rt. 1.</li>
+			<li>After 20 miles, turn right onto ME-27 South/Boothbay Road. Follow this road for 10 miles into Boothbay Harbor.</li>
+			<li>Turn left onto Union Street</li>
+			<li>Turn right onto Atlantic Avenue</li>
+			<li>Continue onto Grandview Avenue. Spruce Point Inn is at the end of this road.</li>
+		</ul>
+
+		<h3>International Travel</h3>
+
+		<p>The closest airport is Portland International Jetport. It is about 1 hour 30 minutes south of Boothbay Harbor.</p>
+
+		<p>Boston Logan International Airport is about 3 hours 15 minutes south of Boothbay Harbor, but with many more flights may offer more options. From here you can rent a car or carpool with folks traveling from Boston.</p>
+
+		<p><a class="external" href="http://www.concordcoachlines.com/maine/wiscasset.html">Concord Coach Lines</a> offers a bus from both Logan airport and Portland to Wiscasset, Maine.</p>
+
+	% else
+
+	% endif
+% endblock
