@@ -1,13 +1,7 @@
 from lib.utilities import Utilities
 
-'''
-RequestParser centralizes the processing of a request.
-
-Tasks common to every page request should abstracted away and be done inside
-the RequestParser or one of it's child classes.
-'''
 class RequestParser():
-
+    " Centralizes the processing of a request "
     def __init__(self, request):
         self.request = request
         self.requestvars = {}
@@ -43,13 +37,3 @@ class PageRequestParser(RequestParser):
             return uri_segments[1]
         else:
             return 'en'
-
-class AdminPageRequestParser(RequestParser):
-
-    def __init__(self, request):
-        RequestParser.__init__(self, request)
-        self.parse_admin_page()
-
-    def parse_admin_page(self):
-        pagevars = {}
-        self.requestvars.update(pagevars)

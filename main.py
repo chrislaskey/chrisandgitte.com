@@ -4,7 +4,7 @@ from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path()
 
 from flask import Flask, g, render_template, request
-from lib.requestparser import PageRequestParser, AdminPageRequestParser
+from lib.requestparser import PageRequestParser
 from lib.templateparser import TemplateVariableParser
 from lib.weddingphotoalbum import *
 
@@ -80,12 +80,6 @@ def return_page_templatevars():
     templatevar_parser = TemplateVariableParser(request, g.requestvars)
     templatevar_parser.set_templatevar('debug', app.debug)
     return templatevar_parser.return_templatevars()
-
-def common_admin_page_processing():
-    set_admin_page_requestvars()
-
-def set_admin_page_requestvars():
-    g.requestvars = AdminPageRequestParser(request).return_requestvars()
 
 if __name__ == '__main__':
     app.jinja_env.line_statement_prefix = '%'
