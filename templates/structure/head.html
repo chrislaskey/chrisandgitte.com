@@ -13,7 +13,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Styles -->
-	<link href='http://fonts.googleapis.com/css?family=Arvo:400,400italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ debug_file_root }}/assets/lib/boostrap/css/boostrap.min.css" media="all"/>
+	<link rel="stylesheet" href="{{ debug_file_root }}/assets/lib/boostrap/css/boostrap-responsive.min.css" media="all"/>
 	% if is_responsive
 	<!-- Responsive design -->
 	<link rel="stylesheet/less" href="{{ debug_file_root }}/assets/css/init-responsive.less" media="all"/>
@@ -27,5 +28,6 @@
 	% endif
 
 	<!-- Scripts -->
+	<script type="text/javascript" src="{{ debug_file_root }}/assets/lib/bootstrap/js/boostrap.min.js"></script>
 	<script type="text/javascript" src="{{ debug_file_root }}/assets/js/library.js"></script>
 	<script type="text/javascript" src="{{ debug_file_root }}/assets/js/common.js"></script>

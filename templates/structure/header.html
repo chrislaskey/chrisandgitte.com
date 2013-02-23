@@ -1,5 +1,21 @@
-<a class="logo">Chris and Gitte<br/> are getting married</a>
-<ul class="nav">
-	<li><a href="one"></a></li>
-</ul>
+<a class="logo">Chris &amp; Gitte<br/><span class="subheading">are getting married</span></a>
 
+% with
+	% if language == 'en'
+	<a class="language language_be" href="{{ mirror_language_link }}">Vlaams</a>
+	% else
+	<a class="language language_en" href="{{ mirror_language_link }}">English</a>
+	% endif
+% endwith
+
+<ul class="nav">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">Ceremony and Reception</a></li>
+	<li><a href="#">Wedding Party</a></li>
+	<li><a href="#">Getting Here</a></li>
+	<li><a href="#">Your time in Maine</a></li>
+	<li><a href="#">Photo Album</a></li>
+	<li><a href="#">Registry</a></li>
+	<li><a href="#">Guest Book</a></li>
+	<li><a href="#">RSVP</a></li>
+</ul>

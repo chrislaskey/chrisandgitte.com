@@ -8,12 +8,17 @@
 @font-sans-serif-enhanced-heavy: "Museo Sans Heavy", Helvetica, Arial, sans-serif;
 
 @font-serif: Georgia, Times, serif;
-@font-serif-enhanced: "Arvo", Georgia, Times, serif;
+@font-serif-enhanced: "Caecilia Roman", Georgia, Times, serif;
+@font-serif-enhanced-italic: "Caecilia Italic", Georgia, Times, serif;
+@font-serif-enhanced-light: "Caecilia Light", Georgia, Times, serif;
+@font-serif-enhanced-light-italic: "Caecilia Light Italic", Georgia, Times, serif;
+@font-serif-enhanced-bold: "Caecilia Bold", Georgia, Times, serif;
 
 @anchor-color:#333;
 @anchor-hover:#444;
 @heading-color:#5d5953;
-@content-color:#9e9b97;
+@content-color:#8b8678;
+@content-color-light:#9e9b97;
 
 /* Less Functions
 //============================================================================*/
@@ -238,6 +243,61 @@
 /* Fonts
 ============================================================================= */
 @font-face {
+	font-family: 'Caecilia Roman';
+	src: url("../fonts/CaeciliaLTStd-Roman.eot");
+	src: local('â˜º'),
+		url("../fonts/CaeciliaLTStd-Roman.woff") format('woff'),
+		url("../fonts/CaeciliaLTStd-Roman.ttf") format('truetype'),
+		url("../fonts/CaeciliaLTStd-Roman.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Caecilia Italic';
+	src: url("../fonts/CaeciliaLTStd-Italic.eot");
+	src: local('â˜º'),
+		url("../fonts/CaeciliaLTStd-Italic.woff") format('woff'),
+		url("../fonts/CaeciliaLTStd-Italic.ttf") format('truetype'),
+		url("../fonts/CaeciliaLTStd-Italic.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Caecilia Light';
+	src: url("../fonts/CaeciliaLTStd-Light.eot");
+	src: local('â˜º'),
+		url("../fonts/CaeciliaLTStd-Light.woff") format('woff'),
+		url("../fonts/CaeciliaLTStd-Light.ttf") format('truetype'),
+		url("../fonts/CaeciliaLTStd-Light.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Caecilia Light Italic';
+	src: url("../fonts/CaeciliaLTStd-LightItalic.eot");
+	src: local('â˜º'),
+		url("../fonts/CaeciliaLTStd-LightItalic.woff") format('woff'),
+		url("../fonts/CaeciliaLTStd-LightItalic.ttf") format('truetype'),
+		url("../fonts/CaeciliaLTStd-LightItalic.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Caecilia Bold';
+	src: url("../fonts/CaeciliaLTStd-Bold.eot");
+	src: local('â˜º'),
+		url("../fonts/CaeciliaLTStd-Bold.woff") format('woff'),
+		url("../fonts/CaeciliaLTStd-Bold.ttf") format('truetype'),
+		url("../fonts/CaeciliaLTStd-Bold.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Museo Sans Ultra Light';
 	src: url("../fonts/MuseoSans_100.eot");
 	src: local('â˜º'),
@@ -304,8 +364,7 @@ html{
 body{
 	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
 	color:@content-color;
-	font:normal 18px/25px @font-serif-enhanced;
-	font:normal 24px/36px @font-serif-enhanced;
+	font:normal 24px/36px @font-serif-enhanced-light;
 	height:100%;
 	margin:0px;
 	padding:0px;
@@ -357,11 +416,6 @@ a:active, a:focus{
 
 a img{
 	border:none;
-}
-
-a.external_icon{
-	background:url('/assets/images/icons/12/external_link.png') center right no-repeat;
-	padding-right:14px;
 }
 
 b, strong{
@@ -461,8 +515,8 @@ blockquote{
 }
 
 	.header{
-		height:100px;
-		margin:40px auto;
+		height:180px;
+		margin:50px auto;
 		width:960px;
 	}
 
@@ -508,14 +562,78 @@ blockquote{
 /* Header
 ============================================================================= */
 a.logo{
+	color:@content-color;
 	display:block;
-	text-align:center;
+	float:left;
+	font:30px/30px @font-serif-enhanced;
+	text-align:left;
+	text-shadow:none;
+	width:300px;
+}
+
+	a.logo:hover{
+		text-decoration:none;
+	}
+
+	a.logo span.subheading{
+		font:24px/30px @font-serif-enhanced-light-italic;
+	}
+
+a.language{
+	background:url('../images/structure/language.png') 0px 0px no-repeat;
+	display:block;
+	float:right;
+	height:40px;
+	margin:5px 0px 0px 0px;
+	text-indent:-5000px;
+	width:135px;
+}
+
+	a.language_be{
+		background-position:0px 0px;
+	}
+
+		a.language_be:hover{
+			background-position:0px -40px;
+		}
+
+	a.language_en{
+		background-position:0px -80px;
+	}
+
+		a.language_en:hover{
+			background-position:0px -120px;
+		}
+
+ul.nav{
+	display:block;
+	float:left;
+	font:16px/20px @font-sans-serif-enhanced-light;
+	list-style:none;
+	margin:40px 0px 10px 0px;
+	text-shadow:none;
 	width:100%;
 }
 
-ul.nav{
-	list-style:none;
-}
+	ul.nav li{
+		display:block;
+		float:left;
+		margin:0px;
+		padding:0px 0px 0px 0px;
+	}
+
+		ul.nav li a{
+			color:@content-color;
+			display:block;
+			margin:3px 10px 3px 0px;
+			padding:9px;
+			.border-radius(5px);
+			background:rgba(66, 55, 13, 0.08);	
+		}
+
+			ul.nav li a:hover{
+				text-decoration:none;
+			}
 
 /* Sidenav
 ============================================================================= */
