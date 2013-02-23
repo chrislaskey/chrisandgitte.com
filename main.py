@@ -1,10 +1,13 @@
-#!/Users/laskey/.virtualenv/chrisandgitte/bin/python
+#!/usr/bin/env python
+
+from lib.environment import Environment
+Environment().add_virtualenv_site_packages_to_path()
 
 # from flask import Flask, abort, request, redirect, url_for, render_template, g
 from flask import Flask, g, render_template, request
 from config.appsetup import AppSetup
-from library.requestparser import PageRequestParser, AdminPageRequestParser
-from library.templateparser import TemplateVariableParser
+from lib.requestparser import PageRequestParser, AdminPageRequestParser
+from lib.templateparser import TemplateVariableParser
 
 app = Flask(__name__)
 
@@ -107,6 +110,5 @@ if __name__ == '__main__':
         'debug_mode_on_hostnames': ('laskey.local', 'cnsmac3.bu.edu')
     }
     app_setup = AppSetup(app_config).return_setup()
-    # Use a single % in templates
     app.jinja_env.line_statement_prefix = '%'
     app.run(**app_setup)

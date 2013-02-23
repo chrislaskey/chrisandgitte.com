@@ -1,22 +1,25 @@
-% extends "base.html"
+% extends "page.html"
 
-% block banner
-% endblock
+% if language == 'en'
+	% set banner = ''
+% else
+	% set banner = ''
+% endif
+
+% if language == 'en'
+	% set title = 'Page Not Found'
+% else
+	% set title = 'Pagina niet Gevonden'
+% endif
 
 % block content
-
 	% if language == 'en'
 
-	<h1>Page Not Found</h1>
-
-	<p>The page you requested {{ uri }} could not be found.</p>
+		<p>The page you requested {{ uri }} could not be found.</p>
 
 	% else
 
-	<h1>Pagina niet Gevonden</h1>
-
-	<p>De pagina die u heeft opgevraagd kan niet worden gevonden.</p>
+		<p>De pagina die u heeft opgevraagd kan niet worden gevonden.</p>
 
 	% endif
-
 % endblock
