@@ -93,12 +93,15 @@ class WeddingPhotoAlbumImages:
         directory = album_generator.get_option('output_directory')
         return directory
 
-    def set_output_dir(self, directory):
+    def set_dir(self, directory):
         self.directory = directory
 
     def get_images(self, image_path = ""):
         images = []
-        for file in os.listdir(self.directory):
+        this_dir = os.path.dirname(__file__)
+        base_dir = os.path.join(this_dir, '..')
+        path = os.path.join(base_dir, self.directory)
+        for file in os.listdir(path):
             if '.thumbnail' in file:
                 image = self._generate_image_info(file)
                 images.append(image)
