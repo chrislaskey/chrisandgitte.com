@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	% include "structure/head.html"
+	% block head
+	% endblock
+</head>
+
+<body class="{{ body_class }}">
+
+<div class="wrapper wrapper_header">
+	<div class="header container">
+		% block header
+		% include "structure/header.html"
+		% endblock
+	</div>
+</div>
+
+<div class="wrapper wrapper_nav">
+	<div class="nav_container container">
+		% block nav
+		% include "structure/nav.html"
+		% endblock
+	</div>
+</div>
+
+% block banner
+	% if banner
+		<div class="wrapper wrapper_banner">
+			<div class="banner container">
+				{{ banner }}
+			</div>
+		</div>
+	% endif
+% endblock
+
+% if title
+<div class="wrapper wrapper_main">
+	<div class="main container">
+		<div class="sixteen columns alpha">
+			% block main
+			<div class="content">
+				<h1>{{ title }}</h1>
+				% block content
+					{{ content }}
+				% endblock
+			</div>
+			% endblock
+		</div>
+	</div>
+</div>
+% endif
+
+% block date_banner
+	<div class="wrapper wrapper_date_banner">
+		<div class="date_banner container">
+			% if language == 'en'
+				<div class="leader">Where the forest meets the ocean, where the trees meet the sea...</div>
+				<div class="date">Sunday, September 1, 2013</div>
+				<div class="address">Spruce Point Inn Poolside Deck, 88 Grandview Ave, Boothbay Harbor, ME 04538, USA</div>
+			% else
+				<div class="leader">Waar het bos raakt de zee...</div>
+				<div class="date">Zondag 1 September 2013</div>
+				<div class="address">Spruce Point Inn Oceaan Terras, 88 Grandview Ave, Boothbay Harbor, ME 04538, USA</div>
+			% endif
+		</div>
+	</div>
+% endblock
+
+<div class="wrapper wrapper_footer">
+	<div class="footer container">
+		% block footer
+		% include "structure/footer.html"
+		% endblock
+	</div>
+</div>
+
+<script type="text/javascript">
+  	var _gaq = _gaq || [];
+  	_gaq.push(['_setAccount', 'UA-3303547-6']);
+  	_gaq.push(['_trackPageview']);
+
+  	(function() {
+    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  	})();
+</script>
+
+</body>
+</html>

@@ -50,6 +50,11 @@ def rsvp(lang):
     common_page_processing()
     return render_template('site/rsvp.html', **g.templatevars)
 
+@app.route('/<lang>/save-the-date/')
+def save_the_date(lang):
+    common_page_processing()
+    return render_template('site/save-the-date.html', **g.templatevars)
+
 @app.route('/')
 @app.route('/en/')
 @app.route('/be/')
