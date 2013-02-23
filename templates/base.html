@@ -9,7 +9,7 @@
 <body class="{{ body_class }}">
 
 <div class="wrapper wrapper_header">
-	<div class="header">
+	<div class="header container">
 		% block header
 		% include "structure/header.html"
 		% endblock
@@ -17,31 +17,30 @@
 </div>
 
 <div class="wrapper wrapper_banner">
-	<div class="banner">
-		{{ banner }}
+	<div class="banner container">
+		<div class="row">
+			<div class="span10 offset1">
+				{{ banner }}
+			</div>
+		</div>
 	</div>
 </div>
 
 <div class="wrapper wrapper_main">
-	<div class="main">
-		% block main
-		<div class="content">
-			% block content
-			<h1>{{ title }}</h1>
-			{{ content }}
+	<div class="main container">
+		<div class="content span10 offset1">
+			% block main
+				% block content
+				<h1>{{ title }}</h1>
+				{{ content }}
+				% endblock
 			% endblock
 		</div>
-		<div class="sidebar">
-			% block sidebar
-			% include "structure/sidebar.html"
-			% endblock
-		</div>
-		% endblock
 	</div>
 </div>
 
 <div class="wrapper wrapper_footer">
-	<div class="footer">
+	<div class="footer container">
 		% block footer
 		% include "structure/footer.html"
 		% endblock

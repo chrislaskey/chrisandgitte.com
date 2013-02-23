@@ -14,11 +14,16 @@
 @font-serif-enhanced-light-italic: "Caecilia Light Italic", Georgia, Times, serif;
 @font-serif-enhanced-bold: "Caecilia Bold", Georgia, Times, serif;
 
-@anchor-color:#333;
-@anchor-hover:#444;
-@heading-color:#5d5953;
 @content-color:#8b8678;
 @content-color-light:#9e9b97;
+
+@heading-color:#d08c2b;
+@heading-color:@content-color;
+
+@anchor-color:#d08c2b;
+@anchor-hover:lighten(@content-color, 10%);
+
+@text-shadow-lighten: '0 1px 1px #fff';
 
 /* Less Functions
 //============================================================================*/
@@ -364,11 +369,10 @@ html{
 body{
 	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
 	color:@content-color;
-	font:normal 24px/36px @font-serif-enhanced-light;
+	font:normal 17px/28px @font-sans-serif-enhanced-light;
 	height:100%;
 	margin:0px;
 	padding:0px;
-	text-shadow:0 1px 1px #fff;
 	width:100%;
 }
 
@@ -436,7 +440,7 @@ h1, h2, h3, h4, h5{
 
 h1{
 	color:@heading-color;
-	font:normal 36px/36px @font-sans-serif-enhanced-ultra-light;
+	font:normal 24px/30px @font-serif-enhanced-light;
 	margin:0px 0px 22px 0px;
 	text-rendering:optimizeLegibility;
 }
@@ -473,7 +477,6 @@ p{
 	color:@content-color;
 	font:normal 18px/25px @font-serif-enhanced;
 	margin:0px 0px 22px 0px;
-	text-shadow:0 1px 1px #fff;
 }
 
 ul{
@@ -515,9 +518,7 @@ blockquote{
 }
 
 	.header{
-		height:180px;
 		margin:50px auto;
-		width:960px;
 	}
 
 .wrapper_banner{
@@ -525,17 +526,20 @@ blockquote{
 }
 
 	.banner{
-		margin:40px auto;
-		width:960px;
+		font:normal 24px/36px @font-serif-enhanced-light;
+		height:auto !important;
+		margin:40px auto !important;
 	}
 
 .wrapper_main{
-
+	background:url('../images/structure/bg-stripe.png') top center repeat;
+	background:url('../images/structure/bg-stripe-dotted.png') top center repeat;
+	background:url('../images/structure/fish.png') center center no-repeat;
+	background:url('../images/structure/bg-map.jpg') top center repeat;
 }
 
 	.main{
 		margin:40px auto;
-		width:960px;
 	}
 
 		.content{
@@ -547,13 +551,11 @@ blockquote{
 		}
 
 .wrapper_footer{
-
+	background:rgba(66, 55, 13, 0.10);	
 }
 
 	.footer{
-		height:100px;
-		margin:0px auto;
-		width:960px;
+		margin:30px auto 20px auto;
 	}
 
 /* Homepage
@@ -562,12 +564,15 @@ blockquote{
 /* Header
 ============================================================================= */
 a.logo{
+	background:url('../images/structure/birds-logo.png') 0px 0px no-repeat;
 	color:@content-color;
 	display:block;
 	float:left;
 	font:30px/30px @font-serif-enhanced;
+	height:65px;
+	margin:0px 0px 0px -30px;
+	padding:5px 0px 0px 160px;
 	text-align:left;
-	text-shadow:none;
 	width:300px;
 }
 
@@ -584,8 +589,9 @@ a.language{
 	display:block;
 	float:right;
 	height:40px;
-	margin:5px 0px 0px 0px;
+	margin:10px 0px 0px 0px;
 	text-indent:-5000px;
+	opacity:0.8;
 	width:135px;
 }
 
@@ -595,6 +601,7 @@ a.language{
 
 		a.language_be:hover{
 			background-position:0px -40px;
+			opacity:1.0;
 		}
 
 	a.language_en{
@@ -603,6 +610,7 @@ a.language{
 
 		a.language_en:hover{
 			background-position:0px -120px;
+			opacity:1.0;
 		}
 
 ul.nav{
@@ -611,7 +619,6 @@ ul.nav{
 	font:16px/20px @font-sans-serif-enhanced-light;
 	list-style:none;
 	margin:40px 0px 10px 0px;
-	text-shadow:none;
 	width:100%;
 }
 
@@ -791,6 +798,12 @@ div.content .callout-note{
 	a{
 		text-decoration:none;
 	}
+}
+
+/* Footer content
+============================================================================= */
+.footer a{
+	color:@content-color;
 }
 
 /* Print
