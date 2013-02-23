@@ -1,7 +1,7 @@
 About
 ================================================================================
 
-A website for our wedding, featuring a custom design, responsive HTML with
+The website for our wedding, featuring a custom design, responsive HTML with
 [skeleton.css](http://www.getskeleton.com/), multi-language support, and built
 on top of Python [Flask](http://flask.pocoo.org/).
 
