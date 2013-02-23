@@ -265,6 +265,7 @@ html{
 body{
 	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
 	color:@content-color;
+	color:#000;
 	font:normal 18px/30px @font-serif-enhanced-light;
 	height:100%;
 	margin:0px;
@@ -376,6 +377,7 @@ ul{
 
 blockquote{
 	border:none;
+	color:@content-color;
 	font:normal 18px/27px @font-serif-enhanced-light;
 	margin:0px 0px 1em 0px;
 
@@ -436,6 +438,7 @@ blockquote{
 }
 
 	.banner{
+		color:@content-color;
 		font:normal 24px/36px @font-serif-enhanced-light;
 		height:auto !important;
 		margin:40px auto !important;
@@ -622,6 +625,7 @@ div.content ul{
 	}
 
 table{
+	color:@content-color;
 	margin:1.5em 0px;
 	border:1px solid #ccc;
 	padding:0px;
@@ -665,6 +669,75 @@ table{
 		font:normal 16px/24px @font-serif-enhanced-light;
 		font:normal 14px/24px @font-sans-serif-enhanced;
 		text-transform:uppercase;
+	}
+
+/* Disqus Content
+============================================================================= */
+
+// Header
+#dsq-global-toolbar{
+	display:none !important;
+}
+
+#dsq-account-dropdown a{
+	font:normal 14px/30px @font-serif-enhanced !important;
+}
+
+// Write
+.dsq-avatar{
+	display:none !important;
+}
+
+.dsq-textarea-reply{
+	margin-left:0px !important;
+}
+
+// Comments Header
+#dsq-sort-by select{
+	display:none !important;
+}
+
+// Comments
+.dsq-comment-header{
+	padding-bottom:5px !important;
+}
+
+.dsq-comment-body{
+	padding:0px !important;
+}
+
+	.dsq-commenter-name{
+		color:#638ab1 !important;
+		color:@anchor-color !important;
+		font:normal 18px/28px @font-serif-enhanced-light !important;
+		font-weight:normal !important;
+	}
+
+.dsq-comment-footer{
+	color:@content-color !important;
+	font:normal 12px/20px @font-sans-serif-enhanced-light !important;
+	font-weight:normal !important;
+}
+
+	.dsq-comment-meta a, .dsq-comment-actions a {
+		color: inherit;
+		font:normal 12px/20px @font-sans-serif-enhanced-light !important;
+		opacity:1 !important;
+	}
+
+// Footer
+#dsq-pagination{
+	display:none !important;
+}
+
+.dsq-brlink{
+	color:@content-color !important;
+	font:normal 16px/30px @font-serif-enhanced-light !important;
+}
+
+	.dsq-brlink .logo-disqus{
+		color:@content-color !important;
+		font-size:13px;
 	}
 
 /* Footer content

@@ -37,14 +37,16 @@
 % if title
 <div class="wrapper wrapper_main">
 	<div class="main container">
-		% block main
-		<div class="content">
-			<h1>{{ title }}</h1>
-			% block content
-				{{ content }}
+		<div class="sixteen columns alpha">
+			% block main
+			<div class="content">
+				<h1>{{ title }}</h1>
+				% block content
+					{{ content }}
+				% endblock
+			</div>
 			% endblock
 		</div>
-		% endblock
 	</div>
 </div>
 % endif
