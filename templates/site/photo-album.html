@@ -12,10 +12,26 @@
 	% set title = 'Fotoalbum'
 % endif
 
+% macro _photo_album_image(image)
+	<span class="five columns" style="display:block; background: rgba(96, 75, 23, 0.10); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; margin-bottom:20px;">
+		<a href="{{ image }}" style="display:block; margin:12px;">
+		    <img src="{{ image }}" style="display:block; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; margin:0px auto;"/>
+		</a>
+	</span>
+% endmacro
+
+% macro _photo_album(images)
+    <div class="photo-album" style="margin-left:-10px;">
+	% for image in images:
+		{{ _photo_album_image(image) }}
+	% endfor
+	</div>
+% endmacro
+
 % block content
-	% if language == 'en'
-		Coming soon!
+	% if photo_album_images
+		{{ _photo_album(photo_album_images) }}
 	% else
-		We zullen binnenkort fotos hier plaatsen.
+		<p>Coming soon!</p>
 	% endif
 % endblock

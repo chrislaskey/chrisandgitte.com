@@ -8,6 +8,7 @@ from flask import Flask, g, render_template, request
 from config.appsetup import AppSetup
 from lib.requestparser import PageRequestParser, AdminPageRequestParser
 from lib.templateparser import TemplateVariableParser
+from lib.weddingphotoalbum import *
 
 app = Flask(__name__)
 
@@ -36,6 +37,8 @@ def your_time_in_maine(lang):
 @app.route('/<lang>/photo-album/')
 def photo_album(lang):
     common_page_processing()
+    photo_album_images = WeddingPhotoAlbumImages().get_images()
+    g.templatevars['photo_album_images'] = photo_album_images
     return render_template('site/photo-album.html', **g.templatevars)
 
 @app.route('/<lang>/registry/')
