@@ -9,7 +9,7 @@ class Environment:
 
     def add_virtualenv_site_packages_to_path(self, base_path,
                                              site_packages_path=""):
-        self.base_path = base_path
+        self.base_path = os.path.dirname(base_path)
         site_packages_path = self._get_site_packages_path()
         if os.path.exists(site_packages_path):
             sys.path.insert(0, site_packages_path)
