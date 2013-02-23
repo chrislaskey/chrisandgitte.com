@@ -257,7 +257,7 @@ html{
 
 body{
 	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
-	color:#000;
+	color:@content-color;
 	font:normal 18px/30px @font-serif-enhanced-light;
 	height:100%;
 	margin:0px;
@@ -265,14 +265,14 @@ body{
 	width:100%;
 }
 
-::-webkit-scrollbar {
-	background:#ccc;
-	width: 10px;
-}
+// ::-webkit-scrollbar {
+// 	background:#ccc;
+// 	width: 10px;
+// }
 
-::-webkit-scrollbar-thumb {
-	background: #fff;
-}
+// ::-webkit-scrollbar-thumb {
+// 	background: #fff;
+// }
 
 ::selection {
 	background:lighten(@anchor-color, 8%);
@@ -322,12 +322,12 @@ em{
 h1, h2, h3, h4, h5{
 	color:@heading-color;
 	font-family:@font-serif-enhanced;
-	margin:1em 0px 1em 0px;
+	margin:1em 0px 0.5em 0px;
 	text-rendering:optimizeLegibility;
 }
 
 h1{
-	font:normal 30px/32px @font-serif-enhanced-light;
+	font:normal 32px/32px @font-serif-enhanced-light;
 	margin-top:0.4em;
 }
 
@@ -357,7 +357,7 @@ img{
 p{
 	color:@content-color;
 	font:normal 18px/30px @font-serif-enhanced-light;
-	margin:0px 0px 22px 0px;
+	margin:0px 0px 16px 0px;
 }
 
 ul{
@@ -373,7 +373,7 @@ blockquote{
 
 	background:rgba(96, 75, 23, 0.05);	
 	display:block;
-	padding:32px;
+	padding:20px 30px;
 	.border-radius(5px);
 }
 
@@ -414,7 +414,7 @@ blockquote{
 }
 
 	.nav_container{
-		margin:40px auto 40px auto;
+		margin:20px auto 20px auto;
 	}
 
 .wrapper_banner{
@@ -425,7 +425,7 @@ blockquote{
 		color:@content-color;
 		font:normal 24px/36px @font-serif-enhanced-light;
 		height:auto !important;
-		margin:60px auto !important;
+		margin:50px auto !important;
 	}
 
 	.banner img{
@@ -445,7 +445,7 @@ blockquote{
 }
 
 	.main{
-		margin:40px auto 30px auto;
+		margin:20px auto 20px auto;
 	}
 
 		.content{
@@ -454,11 +454,13 @@ blockquote{
 
 .wrapper_date_banner{
 	background:url('../images/structure/bg-map.jpg') top right repeat;
+	border-bottom:1px solid #d5d3c6;
 }
 
 	.date_banner{
 		height:auto !important;
 		margin:100px auto 100px auto !important;
+		margin:80px auto 80px auto !important;
 		text-align:center;
 	}
 
@@ -560,10 +562,6 @@ ul.nav{
 
 /* Content
 ============================================================================= */
-div.content h1{
-
-}
-
 div.content img{
 	max-width:100%;
 }
@@ -605,6 +603,44 @@ table{
 			padding:8px 16px;
 			vertical-align:top;
 		}
+
+table.data{
+	border:none;
+	border-top:1px dashed #bdb399;
+	width:100%;
+}
+
+	table.data td{
+		font:17px/20px @font-sans-serif-enhanced-light;
+	}
+
+	table.data td{
+		padding:12px 0px;
+		border-bottom:1px dashed #bdb399;
+	}
+
+	table.data tr:hover td{
+		background:#e6e0cf;
+	}
+
+	table.data td:last-child{
+		text-align:right;
+		font:16px/20px @font-sans-serif-enhanced-light;
+	}
+
+.google_map{
+	border:5px solid #dcd7cc;
+	font:normal 15px/20px @font-serif;
+	height:400px;
+	margin:26px 0px 30px 0px;
+	width:99%;
+}
+
+	.google_map img{
+		//max-width:100%; on all .content img{} causes the gmap nav to display
+		//incorrectly.
+		max-width:none !important;
+	}
 
 /* Date banner content
 ============================================================================= */

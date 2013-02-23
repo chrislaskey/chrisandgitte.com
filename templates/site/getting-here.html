@@ -12,12 +12,48 @@
 	% set title = 'Bereikbaarheid'
 % endif
 
+% block head
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.google_map').gmap({
+			'center': '43.830043,-69.622611',
+			'zoom': 6,
+			'callback': function(){
+				var map = this;
+				map.addMarker({
+						'bounds': false,
+						'position': '43.830043,-69.622611',
+					})
+					.click(function(){
+						var content = "<strong>Spruce Point Inn</strong><br/>" +
+										"88 Grandview Ave<br/>" + 
+										"Boothbay Harbor, ME 04538, USA" 
+						map.openInfoWindow({'content': content}, this);
+					});
+			}
+		});
+	});
+</script>
+% endblock 
+
 % block content
 	% if language == 'en'
 
+		<div class="google_map"></div>
+
+		<p>Spruce Point Inn is located on the rocky coast of Maine in Boothbay Harbor:</p>
+
+		<blockquote><a class="external" href="http://www.sprucepointinn.com/">Spruce Point Inn</a><br/>
+			88 Grandview Ave<br/>
+			Boothbay Harbor, ME 04538, USA<br/>
+		</blockquote>
+
+		<p>Get directions from <a href="https://www.google.com/maps?daddr=Spruce+Point+Inn+Resort+%26+Spa,+88+Grandview+Ave,+Boothbay+Harbor,+ME+04538,+USA&hl=en&sll=42.036922,-71.683501&sspn=2.456028,4.916382&oq=Spruce+Point+Inn+88+Grandview+Ave+Boothbay+Harbor,+ME+04538,+USA&t=h&mra=ls&z=16">Google Maps</a>.</p>
+
 		<h2>Directions to Spruce Point Inn</h2>
 
-		<h3>From points south (Boston)</h3>
+		<h3>From Points South (Boston)</h3>
 
 		<ul>
 			<li>Take I-95 North to Portland.</li>
@@ -47,6 +83,8 @@
 		<p><a class="external" href="http://www.concordcoachlines.com/maine/wiscasset.html">Concord Coach Lines</a> offers a bus from both Logan airport and Portland to nearby Wiscasset, Maine.</p>
 
 	% else
+
+		<div class="google_map"></div>
 
 		<h2>Routebeschrijving naar Spruce Point Inn</h2>
 
