@@ -1,16 +1,19 @@
 //* Less Variables
 //============================================================================*/
-@font-sans-serif-enhanced: "Proxima Nova", Helvetica, Arial, sans-serif;
-@font-sans-serif-enhanced-semibold: "Proxima Nova Semibold", "Proxima Nova", Helvetica, Arial, sans-serif;
-@font-sans-serif-enhanced-italic: "Proxima Nova Italic", "Proxima Nova", Helvetica, Arial, sans-serif;
-@font-sans-serif-enhanced-light: "Proxima Nova Light", "Proxima Nova", Helvetica, Arial, sans-serif;
-@font-sans-serif-enhanced-condensed: "District Thin", Helvetica, Arial, sans-serif;
 @font-sans-serif: Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-ultra-light: "Museo Sans Ultra Light", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-light: "Museo Sans Light", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced: "Museo Sans Book", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-bold: "Museo Sans Bold", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-heavy: "Museo Sans Heavy", Helvetica, Arial, sans-serif;
+
 @font-serif: Georgia, Times, serif;
+@font-serif-enhanced: "Arvo", Georgia, Times, serif;
 
 @anchor-color:#333;
 @anchor-hover:#444;
-@heading-color:#333;
+@heading-color:#5d5953;
+@content-color:#9e9b97;
 
 /* Less Functions
 //============================================================================*/
@@ -67,7 +70,7 @@
     line-height: @lineHeight;
   }
   .sans-serif(@weight: normal, @size: 15px, @lineHeight: 25px) {
-    font-family: @font-sans-serif-enhanced;
+    font-family: @font-sans-serif-enhanced-light;
 
     font-size: @size;
     font-weight: @weight;
@@ -235,67 +238,56 @@
 /* Fonts
 ============================================================================= */
 @font-face {
-	font-family: 'Whitney-Book';
-	src: url("/assets/fonts/Whitney-Book.eot");
+	font-family: 'Museo Sans Ultra Light';
+	src: url("../fonts/MuseoSans_100.eot");
 	src: local('â˜º'),
-		url("/assets/fonts/Whitney-Book.woff") format('woff'),
-		url("/assets/fonts/Whitney-Book.ttf") format('truetype'),
-		url("/assets/fonts/Whitney-Book.svg") format('svg');
+		url("../fonts/MuseoSans_100.woff") format('woff'),
+		url("../fonts/MuseoSans_100.ttf") format('truetype'),
+		url("../fonts/MuseoSans_100.svg") format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Proxima Nova';
-	src: url("/assets/fonts/proximanova-regular-webfont.eot");
+	font-family: 'Museo Sans Light';
+	src: url("../fonts/MuseoSans_300.eot");
 	src: local('â˜º'),
-		url("/assets/fonts/proximanova-regular-webfont.woff") format('woff'),
-		url("/assets/fonts/proximanova-regular-webfont.ttf") format('truetype'),
-		url("/assets/fonts/proximanova-regular-webfont.svg") format('svg');
+		url("../fonts/MuseoSans_300.woff") format('woff'),
+		url("../fonts/MuseoSans_300.ttf") format('truetype'),
+		url("../fonts/MuseoSans_300.svg") format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Proxima Nova Light';
-	src: url("/assets/fonts/ProximaNova-Light.eot");
+	font-family: 'Museo Sans Book';
+	src: url("../fonts/MuseoSans_500.eot");
 	src: local('â˜º'),
-		url("/assets/fonts/ProximaNova-Light.woff") format('woff'),
-		url("/assets/fonts/ProximaNova-Light.ttf") format('truetype'),
-		url("/assets/fonts/ProximaNova-Light.svg") format('svg');
+		url("../fonts/MuseoSans_500.woff") format('woff'),
+		url("../fonts/MuseoSans_500.ttf") format('truetype'),
+		url("../fonts/MuseoSans_500.svg") format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Proxima Nova Italic';
-	src: url("/assets/fonts/ProximaNova-RegularItalic.eot");
+	font-family: 'Museo Sans Bold';
+	src: url("../fonts/MuseoSans_700.eot");
 	src: local('â˜º'),
-		url("/assets/fonts/ProximaNova-RegularItalic.woff") format('woff'),
-		url("/assets/fonts/ProximaNova-RegularItalic.ttf") format('truetype'),
-		url("/assets/fonts/ProximaNova-RegularItalic.svg") format('svg');
+		url("../fonts/MuseoSans_700.woff") format('woff'),
+		url("../fonts/MuseoSans_700.ttf") format('truetype'),
+		url("../fonts/MuseoSans_700.svg") format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Proxima Nova Semibold';
-	src: url("/assets/fonts/ProximaNova-Semibold.eot");
+	font-family: 'Museo Sans Heavy';
+	src: url("../fonts/MuseoSans_900.eot");
 	src: local('â˜º'),
-		url("/assets/fonts/ProximaNova-Semibold.woff") format('woff'),
-		url("/assets/fonts/ProximaNova-Semibold.ttf") format('truetype'),
-		url("/assets/fonts/ProximaNova-Semibold.svg") format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'District Thin';
-	src: url("/assets/fonts/DistrictThin.eot");
-	src: local('â˜º'),
-		url("/assets/fonts/DistrictThin.woff") format('woff'),
-		url("/assets/fonts/DistrictThin.ttf") format('truetype'),
-		url("/assets/fonts/DistrictThin.svg") format('svg');
+		url("../fonts/MuseoSans_900.woff") format('woff'),
+		url("../fonts/MuseoSans_900.ttf") format('truetype'),
+		url("../fonts/MuseoSans_900.svg") format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -310,12 +302,14 @@ html{
 }
 
 body{
-	background:#fff;
-	color:#333;
-	font:normal 15px/25px @font-sans-serif-enhanced;
+	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
+	color:@content-color;
+	font:normal 18px/25px @font-serif-enhanced;
+	font:normal 24px/36px @font-serif-enhanced;
 	height:100%;
 	margin:0px;
 	padding:0px;
+	text-shadow:0 1px 1px #fff;
 	width:100%;
 }
 
@@ -372,12 +366,12 @@ a.external_icon{
 
 b, strong{
 	color:#507294;
-	font:normal 15px/24px @font-sans-serif-enhanced-semibold;
+	font:normal 15px/24px @font-sans-serif-enhanced-bold;
 	font-weight:normal;
 }
 
 em{
-	font:normal 15px/25px @font-sans-serif-enhanced-italic;
+	font:normal 15px/25px @font-sans-serif-enhanced;
 	font-weight:normal;
 }
 
@@ -387,27 +381,28 @@ h1, h2, h3, h4, h5{
 }
 
 h1{
-	color:#333;
-	font:normal 28px/28px @font-sans-serif-enhanced;
+	color:@heading-color;
+	font:normal 36px/36px @font-sans-serif-enhanced-ultra-light;
 	margin:0px 0px 22px 0px;
+	text-rendering:optimizeLegibility;
 }
 
 h2{
 	color:@heading-color;
-	font:normal 20px/22px @font-sans-serif-enhanced;
+	font:normal 20px/22px @font-sans-serif-enhanced-light;
 	margin:20px 0px 22px 0px;
 }
 
 h3{
 	color:@heading-color;
 	color:#333;
-	font:normal 16px/17px @font-sans-serif-enhanced;
+	font:normal 16px/17px @font-sans-serif-enhanced-light;
 	margin:20px 0px 22px 0px;
 }
 
 h4{
 	color:#333;
-	font:normal 15px/18px @font-sans-serif-enhanced;
+	font:normal 15px/18px @font-sans-serif-enhanced-light;
 	font-weight:400;
 	margin:20px 0px 22px 0px;
 	text-transform:uppercase;
@@ -421,9 +416,10 @@ img{
 }
 
 p{
-	color:#333;
-	font:normal 15px/25px @font-sans-serif-enhanced;
+	color:@content-color;
+	font:normal 18px/25px @font-serif-enhanced;
 	margin:0px 0px 22px 0px;
+	text-shadow:0 1px 1px #fff;
 }
 
 ul{
@@ -433,19 +429,19 @@ ul{
 }
 
 blockquote{
-	font:13px/16px @font-sans-serif-enhanced;
+	font:13px/16px @font-sans-serif-enhanced-light;
 	margin:20px 0px;
 	padding:0px 15px;
 }
 
 	blockquote p{
-		font:12px/16px @font-sans-serif-enhanced;
+		font:12px/16px @font-sans-serif-enhanced-light;
 	}
 
 	blockquote.emphasis{
 		border-left:6px solid #e4e4e4;
 		color:#246b9c;
-		font:15px/20px @font-sans-serif-enhanced;
+		font:15px/20px @font-sans-serif-enhanced-light;
 		font-weight:normal;
 	}
 
@@ -455,37 +451,36 @@ blockquote{
 /* Structure
 ============================================================================= */
 .wrapper{
-	background:#fff;
+	background:rgba(66, 55, 13, 0.05);	
 	width:100%;
 	.clearfix();
 }
 
 .wrapper_header{
-	background:#fff;
+
 }
 
 	.header{
 		height:100px;
-		margin:0px auto;
+		margin:40px auto;
 		width:960px;
 	}
 
 .wrapper_banner{
-	background:#fff;
+	background:none;
 }
 
 	.banner{
-		height:300px;
-		margin:0px auto;
+		margin:40px auto;
 		width:960px;
 	}
 
 .wrapper_main{
-	background:#fff;
+
 }
 
 	.main{
-		margin:0px auto;
+		margin:40px auto;
 		width:960px;
 	}
 
@@ -498,7 +493,7 @@ blockquote{
 		}
 
 .wrapper_footer{
-	background:#fff;
+
 }
 
 	.footer{
@@ -510,6 +505,24 @@ blockquote{
 /* Homepage
 ============================================================================= */
 
+/* Header
+============================================================================= */
+a.logo{
+	display:block;
+	text-align:center;
+	width:100%;
+}
+
+ul.nav{
+	list-style:none;
+}
+
+/* Sidenav
+============================================================================= */
+ul.sidenav{
+	list-style:none;
+}
+
 /* General Content
 ============================================================================= */
 table{
@@ -519,7 +532,7 @@ table{
 }
 
 	table tr{
-		font:normal 15px/16px @font-sans-serif-enhanced;
+		font:normal 15px/16px @font-sans-serif-enhanced-light;
 		vertical-align:top;
 	}
 
@@ -530,7 +543,7 @@ table{
 		table tr th{
 			// color:@heading-color;
 			padding:12px 0px;
-			font:normal 13px/16px @font-sans-serif-enhanced-semibold;
+			font:normal 13px/16px @font-sans-serif-enhanced-bold;
 			text-align:left;
 		}
 
@@ -574,7 +587,6 @@ table.data{
 			background:lighten(@anchor-color, 12%);
 			color:#fff;
 			padding:12px 6px;
-			font:normal 13px/16px @font-sans-serif-enhanced-semibold;
 			font:normal 13px/16px @font-sans-serif-enhanced;
 		}
 
@@ -585,24 +597,11 @@ table.data{
 			padding:12px 12px;
 		}
 
-span.wp-title-private{
-	background:url('/assets/images/site/private-width16.png') top left no-repeat;
-	display:inline-block;
-	text-indent:-5000px;
-	width:16px;
-}
-
-
 /* Content
 ============================================================================= */
 div.content h1{
 
 }
-
-	div.content h1 span.wp-title-private{
-		background:url('/assets/images/site/private-width24.png') top left no-repeat;
-		width:22px;
-	}
 
 div.content img{
 	max-width:100%;
@@ -644,7 +643,7 @@ div.content ul.full-width{
 
 div.content .callout-quote{
 	display:inline-block;
-	font:20px/24px @font-sans-serif-enhanced-condensed;
+	font:20px/24px @font-sans-serif-enhanced-light;
 	float:left;
 	margin:14px 14px 10px -90px;
 	padding:0px 10px 0px 0px;

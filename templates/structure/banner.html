@@ -1,3 +1,7 @@
 
-{{ lipsum(n=1) }}
 
+% if banner
+	{{ banner }}
+% else
+	{{ lipsum(n=1) }}
+% endif

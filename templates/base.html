@@ -18,9 +18,7 @@
 
 <div class="wrapper wrapper_banner">
 	<div class="banner">
-		% block banner
-		% include "structure/banner.html"
-		% endblock
+		{{ banner }}
 	</div>
 </div>
 
@@ -32,14 +30,14 @@
 			<h1>{{ title }}</h1>
 			{{ content }}
 			% endblock
-		<div>
+		</div>
 		<div class="sidebar">
 			% block sidebar
 			% include "structure/sidebar.html"
 			% endblock
-		<div>
+		</div>
 		% endblock
-	<div>
+	</div>
 </div>
 
 <div class="wrapper wrapper_footer">
@@ -47,7 +45,7 @@
 		% block footer
 		% include "structure/footer.html"
 		% endblock
-	<div>
+	</div>
 </div>
 
 </body>
