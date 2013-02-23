@@ -16,6 +16,14 @@
 	</div>
 </div>
 
+<div class="wrapper wrapper_nav">
+	<div class="nav_container container">
+		% block nav
+		% include "structure/nav.html"
+		% endblock
+	</div>
+</div>
+
 % block banner
 	% if banner
 		<div class="wrapper wrapper_banner">
@@ -30,6 +38,7 @@
 	% endif
 % endblock
 
+% if title
 <div class="wrapper wrapper_main">
 	<div class="main container">
 		<div class="row">
@@ -46,26 +55,7 @@
 		</div>
 	</div>
 </div>
-
-% block date_banner
-	<div class="wrapper wrapper_date_banner">
-		<div class="date_banner container">
-			<div class="row">
-				<div class="span10 offset1">
-					% if language == 'en'
-						<div class="date">Sunday, September 1, 2013 at 4:00PM<br/>Spruce Point Inn Poolside Deck</div>
-						<div class="image"></div>
-						<div class="address">88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
-					% else
-						<div class="date">Zondag, September 1, 2013 at 4:00PM<br/>Spruce Point Inn Poolside Deck</div>
-						<div class="image"></div>
-						<div class="address">88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
-					% endif
-				</div>
-			</div>
-		</div>
-	</div>
-% endblock
+% endif
 
 <div class="wrapper wrapper_footer">
 	<div class="footer container">
@@ -74,6 +64,26 @@
 		% endblock
 	</div>
 </div>
+
+% block date_banner
+	<div class="wrapper wrapper_date_banner">
+		<div class="date_banner container">
+			<div class="row">
+				<div class="span10 offset1">
+					% if language == 'en'
+						<div class="leader">Where the forest meets the ocean, where the trees meet the sea...</div>
+						<div class="date">Sunday, September 1, 2013 at 5:00PM</div>
+						<div class="address">Spruce Point Inn Poolside Deck<br/>88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
+					% else
+						<div class="leader">Where the forest meets the ocean, where the trees meet the sea...</div>
+						<div class="date">Zondag, September 1, 2013 at 5:00PM<br/>Spruce Point Inn Poolside Deck</div>
+						<div class="address">88 Grandview Ave<br/> Boothbay Harbor, ME 04538, USA</div>
+					% endif
+				</div>
+			</div>
+		</div>
+	</div>
+% endblock
 
 </body>
 </html>
