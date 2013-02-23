@@ -16,25 +16,33 @@
 	</div>
 </div>
 
-<div class="wrapper wrapper_banner">
-	<div class="banner container">
-		<div class="row">
-			<div class="span10 offset1">
-				{{ banner }}
+% block banner
+	% if banner
+	<div class="wrapper wrapper_banner">
+		<div class="banner container">
+			<div class="row">
+				<div class="span10 offset1">
+					{{ banner }}
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	% endif
+% endblock
 
 <div class="wrapper wrapper_main">
 	<div class="main container">
-		<div class="content span10 offset1">
-			% block main
-				% block content
-				<h1>{{ title }}</h1>
-				{{ content }}
+		<div class="row">
+			<div class="span10 offset1">
+				% block main
+				<div class="content">
+					<h1>{{ title }}</h1>
+					% block content
+					{{ content }}
+					% endblock
+				</div>
 				% endblock
-			% endblock
+			</div>
 		</div>
 	</div>
 </div>

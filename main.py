@@ -15,10 +15,10 @@ def about(lang):
     common_page_processing()
     return render_template('site/about.html', **g.templatevars)
 
-@app.route('/<lang>/venue/')
-def venue(lang):
+@app.route('/<lang>/your-time-in-maine/')
+def your_time_in_maine(lang):
     common_page_processing()
-    return render_template('site/venue.html', **g.templatevars)
+    return render_template('site/your-time-in-maine.html', **g.templatevars)
 
 @app.route('/')
 @app.route('/en/')

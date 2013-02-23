@@ -423,47 +423,36 @@ a img{
 }
 
 b, strong{
-	color:#507294;
-	font:normal 15px/24px @font-sans-serif-enhanced-bold;
-	font-weight:normal;
+
 }
 
 em{
-	font:normal 15px/25px @font-sans-serif-enhanced;
-	font-weight:normal;
+
 }
 
 h1, h2, h3, h4, h5{
-	font-family: @font-sans-serif;
-	margin:1em 0px 0px 0px;
-}
-
-h1{
 	color:@heading-color;
-	font:normal 24px/30px @font-serif-enhanced-light;
-	margin:0px 0px 22px 0px;
+	font-family:@font-serif-enhanced;
+	margin:1em 0px 1em 0px;
 	text-rendering:optimizeLegibility;
 }
 
+h1{
+	font:normal 24px/30px @font-serif-enhanced-light;
+	margin-top:0px;
+}
+
 h2{
-	color:@heading-color;
-	font:normal 20px/22px @font-sans-serif-enhanced-light;
-	margin:20px 0px 22px 0px;
+	font:normal 20px/30px @font-serif-enhanced-italic;
 }
 
 h3{
-	color:@heading-color;
-	color:#333;
-	font:normal 16px/17px @font-sans-serif-enhanced-light;
-	margin:20px 0px 22px 0px;
+	font:normal 16px/30px @font-sans-serif-enhanced;
+	text-transform:uppercase;
 }
 
 h4{
-	color:#333;
-	font:normal 15px/18px @font-sans-serif-enhanced-light;
-	font-weight:400;
-	margin:20px 0px 22px 0px;
-	text-transform:uppercase;
+	font:normal 18px/30px @font-serif-enhanced;
 }
 
 img{
@@ -486,21 +475,9 @@ ul{
 }
 
 blockquote{
-	font:13px/16px @font-sans-serif-enhanced-light;
-	margin:20px 0px;
-	padding:0px 15px;
+	border:none;
+	font:normal 18px/25px @font-serif-enhanced;
 }
-
-	blockquote p{
-		font:12px/16px @font-sans-serif-enhanced-light;
-	}
-
-	blockquote.emphasis{
-		border-left:6px solid #e4e4e4;
-		color:#246b9c;
-		font:15px/20px @font-sans-serif-enhanced-light;
-		font-weight:normal;
-	}
 
 .hidden{ display:none; }
 .clear{ .clearfix(); }
@@ -518,7 +495,7 @@ blockquote{
 }
 
 	.header{
-		margin:50px auto;
+		margin:50px auto 40px auto;
 	}
 
 .wrapper_banner{
@@ -555,7 +532,7 @@ blockquote{
 }
 
 	.footer{
-		margin:30px auto 20px auto;
+		margin:40px auto 20px auto;
 	}
 
 /* Homepage
@@ -642,12 +619,6 @@ ul.nav{
 				text-decoration:none;
 			}
 
-/* Sidenav
-============================================================================= */
-ul.sidenav{
-	list-style:none;
-}
-
 /* General Content
 ============================================================================= */
 table{
@@ -733,7 +704,8 @@ div.content img{
 }
 
 div.content ul{
-	color:#525252;
+	color:@content-color;
+	font-family:@font-serif-enhanced;
 	margin:1em 0px 1em 25px;
 }
 
@@ -752,53 +724,6 @@ div.content ul{
 		float:right;
 		margin:4px 0px 14px 20px;
 	}
-
-div.content ul.full-width{
-	border-bottom:1px dotted #bbb;
-	color:#222;
-	list-style:none;
-	margin:0px;
-	padding:0px;
-}
-
-	div.content ul.full-width li{
-		border-top:1px dotted #bbb;
-		padding:20px 0px 20px 0px;
-	}
-
-div.content .callout-quote{
-	display:inline-block;
-	font:20px/24px @font-sans-serif-enhanced-light;
-	float:left;
-	margin:14px 14px 10px -90px;
-	padding:0px 10px 0px 0px;
-	text-indent:-8px;
-	text-transform:uppercase;
-	width:260px;
-}
-
-	div.content .callout-quote-serif{
-		font:18px/28px @font-serif;
-		text-transform:none;
-	}
-
-div.content .callout-note{
-	display:inline-block;
-	font:11px/18px @font-sans-serif-enhanced;
-	float:left;
-	margin:0px 0px 0px -120px;
-	padding:0px 20px 0px 0px;
-	// text-align:right;
-	width:100px;
-	.title{
-		display:inline-block;
-		font:bold 10px/18px @font-sans-serif-enhanced;
-		text-transform:uppercase;
-	}
-	a{
-		text-decoration:none;
-	}
-}
 
 /* Footer content
 ============================================================================= */
