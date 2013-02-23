@@ -1,0 +1,30 @@
+	% if debug
+	% set debug_file_root = '/static'
+	% endif
+
+	<!-- Title -->
+	<title>{{ page_title }}</title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="/favicon.png" />
+	
+	<!-- Meta -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Styles -->
+	% if is_responsive
+	<!-- Responsive design -->
+	<link rel="stylesheet/less" href="{{ debug_file_root }}/assets/css/init-responsive.less" media="all"/>
+
+	<!-- Internet Explorer support for media queries -->
+	<!--[if lt IE 9]>
+		<script src="/assets/js/respond.js"></script>
+	<![endif]-->
+	% else
+	<link rel="stylesheet/less" href="{{ debug_file_root }}/assets/css/init-fixed.less" media="all"/>
+	% endif
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="{{ debug_file_root }}/assets/js/library.js"></script>
+	<script type="text/javascript" src="{{ debug_file_root }}/assets/js/common.js"></script>

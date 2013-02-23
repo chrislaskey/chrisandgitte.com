@@ -1,49 +1,59 @@
 #!/Users/laskey/.virtualenv/chrisandgitte/bin/python
 
 # from flask import Flask, abort, request, redirect, url_for, render_template, g
-from flask import Flask, request, g
-from app.config.appsetup import AppSetup
-from app.library.requestparser import PageRequestParser, AdminPageRequestParser
+from flask import Flask, g, render_template, request
+from config.appsetup import AppSetup
+from library.requestparser import PageRequestParser, AdminPageRequestParser
+from library.templateparser import TemplateVariableParser
 
-# Setup app
-# -----------------------------------------------------------------------------
 app = Flask(__name__)
-
-# Use a single % rather than {% %} in templates
-app.jinja_env.line_statement_prefix = '%'
 
 # Routing functions
 # -----------------------------------------------------------------------------
-@app.route('/admin')
-def route_admin():
+@app.route('/<lang>/about/')
+def about(lang):
+    common_page_processing()
+    return render_template('site/about.html', **g.templatevars)
+
+@app.route('/<lang>/venue/')
+def venue(lang):
+    common_page_processing()
+    return render_template('site/venue.html', **g.templatevars)
+
+@app.route('/')
+@app.route('/en/')
+@app.route('/be/')
+def homepage():
+    common_page_processing()
+    return render_template('site/homepage.html', **g.templatevars)
+
+# Admin Routing functions
+# -----------------------------------------------------------------------------
+@app.route('/admin/')
+def admin_homepage():
     common_admin_page_processing()
     return 'admin'
 
-@app.route('/', defaults={'lang': 'en'})
-@app.route('/<lang>')
-def route_homepage(lang):
-    common_page_processing()
-    return 'homepage'
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def route_catch_all(path):
-    common_page_processing()
-    return str(g.requestvars['language'])
-
 # Routing error functions
 # -----------------------------------------------------------------------------
-# @app.errorhandler(404)
-# def not_found(error):
-#     return render_template('error.html'), 404
+@app.errorhandler(404)
+def not_found(error):
+    common_page_processing()
+    return render_template('errors/404.html', **g.templatevars), 404
 
 # Utility functions
 # -----------------------------------------------------------------------------
 def common_page_processing():
-    set_page_requestvars()
+    g.requestvars = return_page_requestvars()
+    g.templatevars = return_page_templatevars()
 
-def set_page_requestvars():
-    g.requestvars = PageRequestParser(request).return_requestvars()
+def return_page_requestvars():
+    return PageRequestParser(request).return_requestvars()
+
+def return_page_templatevars():
+    templatevar_parser = TemplateVariableParser(request, g.requestvars)
+    templatevar_parser.set_templatevar('debug', app.debug)
+    return templatevar_parser.return_templatevars()
 
 def common_admin_page_processing():
     set_admin_page_requestvars()
@@ -54,6 +64,9 @@ def set_admin_page_requestvars():
 # Load app
 # =============================================================================
 if __name__ == '__main__':
+    # Use a single % rather than {% %} in templates
+    app.jinja_env.line_statement_prefix = '%'
+
     app_config = {
         'debug_mode_on_hostnames': ('laskey.local', 'cnsmac3.bu.edu')
     }

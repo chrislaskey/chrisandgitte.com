@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	% include "structure/head.html"
+	% block head
+	% endblock
+</head>
+
+<body class="{{ body_class }}">
+
+<div class="wrapper wrapper_header">
+	<div class="header">
+		% block header
+		% include "structure/header.html"
+		% endblock
+	</div>
+</div>
+
+<div class="wrapper wrapper_banner">
+	<div class="banner">
+		% block banner
+		% include "structure/banner.html"
+		% endblock
+	</div>
+</div>
+
+<div class="wrapper wrapper_main">
+	<div class="main">
+		% block main
+		<div class="content">
+			% block content
+			<h1>{{ title }}</h1>
+			{{ content }}
+			% endblock
+		<div>
+		<div class="sidebar">
+			% block sidebar
+			% include "structure/sidebar.html"
+			% endblock
+		<div>
+		% endblock
+	<div>
+</div>
+
+<div class="wrapper wrapper_footer">
+	<div class="footer">
+		% block footer
+		% include "structure/footer.html"
+		% endblock
+	<div>
+</div>
+
+</body>
+</html>

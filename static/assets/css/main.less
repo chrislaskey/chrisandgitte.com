@@ -1,0 +1,691 @@
+//* Less Variables
+//============================================================================*/
+@font-sans-serif-enhanced: "Proxima Nova", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-semibold: "Proxima Nova Semibold", "Proxima Nova", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-italic: "Proxima Nova Italic", "Proxima Nova", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-light: "Proxima Nova Light", "Proxima Nova", Helvetica, Arial, sans-serif;
+@font-sans-serif-enhanced-condensed: "District Thin", Helvetica, Arial, sans-serif;
+@font-sans-serif: Helvetica, Arial, sans-serif;
+@font-serif: Georgia, Times, serif;
+
+@anchor-color:#333;
+@anchor-hover:#444;
+@heading-color:#333;
+
+/* Less Functions
+//============================================================================*/
+
+//* Less Mixins
+//============================================================================*/
+
+// Clearfix for clearing floats h5bp.com/q
+.clearfix() {
+	zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		zoom: 1;
+		*display: inline;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// Center-align a block level element
+.center-block() {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Sizing shortcuts
+.size(@height: 5px, @width: 5px) {
+	height: @height;
+	width: @width;
+}
+.square(@size: 5px) {
+	.size(@size, @size);
+}
+
+// Input placeholder text
+.placeholder(@color: @grayLight) {
+	:-moz-placeholder {
+		color: @color;
+	}
+	::-webkit-input-placeholder {
+		color: @color;
+	}
+}
+
+// Font Stacks
+#font {
+  .shorthand(@weight: normal, @size: 15px, @lineHeight: 25px) {
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .sans-serif(@weight: normal, @size: 15px, @lineHeight: 25px) {
+    font-family: @font-sans-serif-enhanced;
+
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .serif(@weight: normal, @size: 15px, @lineHeight: 25px) {
+    font-family: "Georgia", Times New Roman, Times, serif;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .monospace(@weight: normal, @size: 12px, @lineHeight: 20px) {
+    font-family: "Monaco", Courier New, monospace;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+}
+
+// Grid System
+.fixed-container() {
+	width: @siteWidth;
+	margin-left: auto;
+	margin-right: auto;
+	.clearfix();
+}
+.columns(@columnSpan: 1) {
+	width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));
+}
+.offset(@columnOffset: 1) {
+	margin-left: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) + @extraSpace;
+}
+// Necessary grid styles for every column to make them appear next to each other horizontally
+.gridColumn() {
+	display: inline;
+	float: left;
+	margin-left: @gridGutterWidth;
+}
+// makeColumn can be used to mark any element (e.g., .content-primary) as a column without changing markup to .span something
+.makeColumn(@columnSpan: 1) {
+	.gridColumn();
+	.columns(@columnSpan);
+}
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+	-webkit-transition: @transition;
+	   -moz-transition: @transition;
+		-ms-transition: @transition;
+		 -o-transition: @transition;
+			transition: @transition;
+}
+
+// Background clipping
+.background-clip(@clip) {
+	-webkit-background-clip: @clip;
+	   -moz-background-clip: @clip;
+			background-clip: @clip;
+}
+
+// CSS3 Content Columns
+.content-columns(@columnCount, @columnGap: 20px) {
+	-webkit-column-count: @columnCount;
+	   -moz-column-count: @columnCount;
+          column-count: @columnCount;
+  -webkit-column-gap: @columnGap;
+	   -moz-column-gap: @columnGap;
+          column-gap: @columnGap;
+}
+
+// Add an alphatransparency value to any background or border color (via Elyse Holladay)
+#translucent {
+  .background(@color: @white, @alpha: 1) {
+    background-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+	}
+	.border(@color: @white, @alpha: 1) {
+		border-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+		background-clip: padding-box;
+	}
+}
+
+// Gradient Bar Colors for buttons and allerts
+.gradientBar(@primaryColor, @secondaryColor) {
+  #gradient > .vertical(@primaryColor, @secondaryColor);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+}
+
+// Gradients
+#gradient {
+  .horizontal (@startColor: #555, @endColor: #333) {
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, right top, from(@startColor), to(@endColor)); // Konqueror
+    background-image: -moz-linear-gradient(left, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(left, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, @startColor), color-stop(100%, @endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(left, @startColor, @endColor); // Le standard
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor)); // IE9 and down
+  }
+  .vertical (@startColor: #555, @endColor: #333) {
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); // Konqueror
+    background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(top, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @startColor), color-stop(100%, @endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(top, @startColor, @endColor); // The standard
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down
+  }
+  .directional (@startColor: #555, @endColor: #333, @deg: 45deg) {
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(@deg, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(@deg, @startColor, @endColor); // IE10
+    background-image: -webkit-linear-gradient(@deg, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(@deg, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(@deg, @startColor, @endColor); // The standard
+  }
+  .vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+    background-color: @endColor;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
+    background-image: -webkit-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: -moz-linear-gradient(top, @startColor, @midColor @colorStop, @endColor);
+    background-image: -ms-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: -o-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+}
+
+// Reset filters for IE
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}
+
+// Opacity
+.opacity(@opacity: 100) {
+	filter: e(%("alpha(opacity=%d)", @opacity));
+	-khtml-opacity: @opacity / 100;
+	  -moz-opacity: @opacity / 100;
+		   opacity: @opacity / 100;
+}
+
+/* Fonts
+============================================================================= */
+@font-face {
+	font-family: 'Whitney-Book';
+	src: url("/assets/fonts/Whitney-Book.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/Whitney-Book.woff") format('woff'),
+		url("/assets/fonts/Whitney-Book.ttf") format('truetype'),
+		url("/assets/fonts/Whitney-Book.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url("/assets/fonts/proximanova-regular-webfont.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/proximanova-regular-webfont.woff") format('woff'),
+		url("/assets/fonts/proximanova-regular-webfont.ttf") format('truetype'),
+		url("/assets/fonts/proximanova-regular-webfont.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova Light';
+	src: url("/assets/fonts/ProximaNova-Light.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/ProximaNova-Light.woff") format('woff'),
+		url("/assets/fonts/ProximaNova-Light.ttf") format('truetype'),
+		url("/assets/fonts/ProximaNova-Light.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova Italic';
+	src: url("/assets/fonts/ProximaNova-RegularItalic.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/ProximaNova-RegularItalic.woff") format('woff'),
+		url("/assets/fonts/ProximaNova-RegularItalic.ttf") format('truetype'),
+		url("/assets/fonts/ProximaNova-RegularItalic.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova Semibold';
+	src: url("/assets/fonts/ProximaNova-Semibold.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/ProximaNova-Semibold.woff") format('woff'),
+		url("/assets/fonts/ProximaNova-Semibold.ttf") format('truetype'),
+		url("/assets/fonts/ProximaNova-Semibold.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'District Thin';
+	src: url("/assets/fonts/DistrictThin.eot");
+	src: local('â˜º'),
+		url("/assets/fonts/DistrictThin.woff") format('woff'),
+		url("/assets/fonts/DistrictThin.ttf") format('truetype'),
+		url("/assets/fonts/DistrictThin.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Universals
+============================================================================= */
+html{
+	height:100%;
+	margin:0px;
+	padding:0px;
+	width:100%;
+}
+
+body{
+	background:#fff;
+	color:#333;
+	font:normal 15px/25px @font-sans-serif-enhanced;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	width:100%;
+}
+
+::-webkit-scrollbar {
+	background:#ccc;
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fff;
+}
+
+::selection {
+	background:lighten(@anchor-color, 8%);
+	color:#fff;
+}
+
+::-moz-selection {
+	background:lighten(@anchor-color, 8%);
+	color:#fff;
+}
+
+img::selection {
+	background:transparent;
+}
+
+img::-moz-selection {
+	background:transparent;
+}
+
+a{
+	color:@anchor-color;
+	text-decoration:none;
+}
+
+a:hover {
+	color:@anchor-hover;
+	text-decoration:underline;
+}
+
+a:active, a:focus{
+	border:0px;
+	outline:0px;
+}
+
+a img{
+	border:none;
+}
+
+a.external_icon{
+	background:url('/assets/images/icons/12/external_link.png') center right no-repeat;
+	padding-right:14px;
+}
+
+b, strong{
+	color:#507294;
+	font:normal 15px/24px @font-sans-serif-enhanced-semibold;
+	font-weight:normal;
+}
+
+em{
+	font:normal 15px/25px @font-sans-serif-enhanced-italic;
+	font-weight:normal;
+}
+
+h1, h2, h3, h4, h5{
+	font-family: @font-sans-serif;
+	margin:1em 0px 0px 0px;
+}
+
+h1{
+	color:#333;
+	font:normal 28px/28px @font-sans-serif-enhanced;
+	margin:0px 0px 22px 0px;
+}
+
+h2{
+	color:@heading-color;
+	font:normal 20px/22px @font-sans-serif-enhanced;
+	margin:20px 0px 22px 0px;
+}
+
+h3{
+	color:@heading-color;
+	color:#333;
+	font:normal 16px/17px @font-sans-serif-enhanced;
+	margin:20px 0px 22px 0px;
+}
+
+h4{
+	color:#333;
+	font:normal 15px/18px @font-sans-serif-enhanced;
+	font-weight:400;
+	margin:20px 0px 22px 0px;
+	text-transform:uppercase;
+}
+
+img{
+	border:0px;
+	display:block;
+	margin:0px;
+	padding:0px;
+}
+
+p{
+	color:#333;
+	font:normal 15px/25px @font-sans-serif-enhanced;
+	margin:0px 0px 22px 0px;
+}
+
+ul{
+	line-height:16px;
+	margin:1em 0px;
+	padding:0px 0px 0px 0px;
+}
+
+blockquote{
+	font:13px/16px @font-sans-serif-enhanced;
+	margin:20px 0px;
+	padding:0px 15px;
+}
+
+	blockquote p{
+		font:12px/16px @font-sans-serif-enhanced;
+	}
+
+	blockquote.emphasis{
+		border-left:6px solid #e4e4e4;
+		color:#246b9c;
+		font:15px/20px @font-sans-serif-enhanced;
+		font-weight:normal;
+	}
+
+.hidden{ display:none; }
+.clear{ .clearfix(); }
+
+/* Structure
+============================================================================= */
+.wrapper{
+	background:#fff;
+	width:100%;
+	.clearfix();
+}
+
+.wrapper_header{
+	background:#fff;
+}
+
+	.header{
+		height:100px;
+		margin:0px auto;
+		width:960px;
+	}
+
+.wrapper_banner{
+	background:#fff;
+}
+
+	.banner{
+		height:300px;
+		margin:0px auto;
+		width:960px;
+	}
+
+.wrapper_main{
+	background:#fff;
+}
+
+	.main{
+		margin:0px auto;
+		width:960px;
+	}
+
+		.content{
+
+		}
+
+		.sidebar{
+
+		}
+
+.wrapper_footer{
+	background:#fff;
+}
+
+	.footer{
+		height:100px;
+		margin:0px auto;
+		width:960px;
+	}
+
+/* Homepage
+============================================================================= */
+
+/* General Content
+============================================================================= */
+table{
+	margin:0px;
+	padding:0px;
+	width:100%;
+}
+
+	table tr{
+		font:normal 15px/16px @font-sans-serif-enhanced;
+		vertical-align:top;
+	}
+
+		table tr:hover{
+			background:#e8f7fe;
+		}
+
+		table tr th{
+			// color:@heading-color;
+			padding:12px 0px;
+			font:normal 13px/16px @font-sans-serif-enhanced-semibold;
+			text-align:left;
+		}
+
+		table tr td{
+			border-top:1px dotted #bbb;
+			padding:0px 0px;
+			text-align:left;
+		}
+
+table.labs a{
+	display:block;
+	padding:20px 10px;
+	width:100%;
+}
+
+	table.labs a{
+		text-decoration:none;
+	}
+
+table.data{
+
+}
+
+	table.data tr{
+		font:normal 14px/16px @font-sans-serif-enhanced;
+	}
+
+		table.data tr.odd{
+			background:#fff;
+		}
+
+		table.data tr.even{
+			background:#fff;
+		}
+
+		table.data tr:hover{
+			background:#ffffe5;
+		}
+
+		table.data tr th{
+			background:lighten(@anchor-color, 12%);
+			color:#fff;
+			padding:12px 6px;
+			font:normal 13px/16px @font-sans-serif-enhanced-semibold;
+			font:normal 13px/16px @font-sans-serif-enhanced;
+		}
+
+		table.data tr td{
+			border-top:none;
+			border-top:1px solid #d7e7f3;
+			// border-top:1px solid #f3f3d7;
+			padding:12px 12px;
+		}
+
+span.wp-title-private{
+	background:url('/assets/images/site/private-width16.png') top left no-repeat;
+	display:inline-block;
+	text-indent:-5000px;
+	width:16px;
+}
+
+
+/* Content
+============================================================================= */
+div.content h1{
+
+}
+
+	div.content h1 span.wp-title-private{
+		background:url('/assets/images/site/private-width24.png') top left no-repeat;
+		width:22px;
+	}
+
+div.content img{
+	max-width:100%;
+}
+
+div.content ul{
+	color:#525252;
+	margin:1em 0px 1em 25px;
+}
+
+	div.content ul li{
+		padding:2px 0px;
+	}
+
+	div.content .alignleft{
+		display:block;
+		float:left;
+		margin:4px 20px 14px 0px;
+	}
+
+	div.content .alignright{
+		display:block;
+		float:right;
+		margin:4px 0px 14px 20px;
+	}
+
+div.content ul.full-width{
+	border-bottom:1px dotted #bbb;
+	color:#222;
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+	div.content ul.full-width li{
+		border-top:1px dotted #bbb;
+		padding:20px 0px 20px 0px;
+	}
+
+div.content .callout-quote{
+	display:inline-block;
+	font:20px/24px @font-sans-serif-enhanced-condensed;
+	float:left;
+	margin:14px 14px 10px -90px;
+	padding:0px 10px 0px 0px;
+	text-indent:-8px;
+	text-transform:uppercase;
+	width:260px;
+}
+
+	div.content .callout-quote-serif{
+		font:18px/28px @font-serif;
+		text-transform:none;
+	}
+
+div.content .callout-note{
+	display:inline-block;
+	font:11px/18px @font-sans-serif-enhanced;
+	float:left;
+	margin:0px 0px 0px -120px;
+	padding:0px 20px 0px 0px;
+	// text-align:right;
+	width:100px;
+	.title{
+		display:inline-block;
+		font:bold 10px/18px @font-sans-serif-enhanced;
+		text-transform:uppercase;
+	}
+	a{
+		text-decoration:none;
+	}
+}
+
+/* Print
+============================================================================= */
+@media print {
+
+	/* Todo: create print style */
+
+}
+
+/* Hide responsive/mobile elements
+============================================================================= */
+.mobile_wrapper{
+	display:none;
+}
