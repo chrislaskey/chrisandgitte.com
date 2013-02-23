@@ -11,19 +11,22 @@ class Utilities():
         try:
             _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
             result = []
-            for word in _punct_re.split(text.lower()):
+            text = text.strip()
+            text = text.lower()
+            for word in _punct_re.split(text):
                 word = normalize('NFKD', word).encode('ascii', 'ignore')
                 if word:
                     result.append(word)
+
             return unicode(delimiter.join(result))
         except TypeError:
             text = unicode(text)
             return self.create_slug(text, delimiter)
 
     def create_title_from_slug(self, text):
-        stripped_text = text.strip()
-        replaced_text = re.sub(r'[-_]+', ' ', stripped_text)
-        return replaced_text.title()
+        replaced_text = re.sub(r'[-_]+', ' ', text)
+        stripped_text = replaced_text.strip()
+        return stripped_text.title()
 
     def create_page_title(self, uri_segments):
         sections = self._process_page_title_segments(uri_segments)
