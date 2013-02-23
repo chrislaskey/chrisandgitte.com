@@ -1,4 +1,5 @@
 from PIL import Image, ExifTags 
+from random import shuffle
 import os
 
 class WeddingPhotoAlbumGenerator:
@@ -95,6 +96,11 @@ class WeddingPhotoAlbumImages:
 
     def set_dir(self, directory):
         self.directory = directory
+
+    def get_images_shuffled(self, image_path = ""):
+        images = self.get_images(image_path)
+        shuffle(images)
+        return images
 
     def get_images(self, image_path = ""):
         images = []

@@ -33,7 +33,7 @@ def your_time_in_maine(lang):
 @app.route('/<lang>/photo-album/')
 def photo_album(lang):
     common_page_processing()
-    photo_album_images = WeddingPhotoAlbumImages().get_images()
+    photo_album_images = WeddingPhotoAlbumImages().get_images_shuffled()
     g.templatevars['photo_album_images'] = photo_album_images
     return render_template('site/photo-album.html', **g.templatevars)
 
