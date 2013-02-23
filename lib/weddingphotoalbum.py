@@ -63,12 +63,13 @@ class WeddingPhotoAlbumGenerator:
         ''' See: http://stackoverflow.com/a/6218425/657661 '''
         exif_orientation_key = self.options['exif_orientation_key']
         exif = dict(image_resource._getexif().items())
-        if exif[exif_orientation_key] == 3: 
-            image_resource = image_resource.rotate(180, expand=True)
-        elif exif[exif_orientation_key] == 6: 
-            image_resource = image_resource.rotate(270, expand=True)
-        elif exif[exif_orientation_key] == 8: 
-            image_resource = image_resource.rotate(90, expand=True)
+        if exif and exif_orientation_key:
+            if exif[exif_orientation_key] == 3: 
+                image_resource = image_resource.rotate(180, expand=True)
+            elif exif[exif_orientation_key] == 6: 
+                image_resource = image_resource.rotate(270, expand=True)
+            elif exif[exif_orientation_key] == 8: 
+                image_resource = image_resource.rotate(90, expand=True)
         return image_resource
 
     def _get_max_size(self):
@@ -96,10 +97,17 @@ class WeddingPhotoAlbumImages:
         self.directory = directory
 
     def get_images(self, image_path = ""):
-        file_dirs = []
+        images = []
         for file in os.listdir(self.directory):
-            if 'thumbnail' in file:
-                relative_file_dir = os.path.join(self.directory, file)
-                file_dir = '/' + relative_file_dir
-                file_dirs.append(file_dir)
-        return file_dirs
+            if '.thumbnail' in file:
+                image = self._generate_image_info(file)
+                images.append(image)
+        return images
+
+    def _generate_image_info(self, thumbnail):
+        fullsize = thumbnail.replace('.thumbnail', '')
+        dir = '/' + self.directory
+        link = os.path.join(dir, fullsize)
+        image = os.path.join(dir, thumbnail)
+        image_info = (image, link)
+        return image_info

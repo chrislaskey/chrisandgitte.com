@@ -12,9 +12,11 @@
 	% set title = 'Fotoalbum'
 % endif
 
-% macro _photo_album_image(image)
+% macro _photo_album_image(image_info)
+	% set image = image_info[0]
+	% set link = image_info[1]
 	<span class="image five columns">
-		<a href="{{ image }}">
+		<a href="{{ link }}">
 		    <img src="{{ image }}"/>
 		</a>
 	</span>
@@ -22,8 +24,8 @@
 
 % macro _photo_album(images)
     <div class="photo-album">
-	% for image in images:
-		{{ _photo_album_image(image) }}
+	% for image_info in images:
+		{{ _photo_album_image(image_info) }}
 	% endfor
 	</div>
 % endmacro
