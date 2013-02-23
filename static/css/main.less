@@ -20,15 +20,8 @@
 @heading-color:#d08c2b;
 @heading-color:@content-color;
 
-@anchor-color:#d08c2b;
-@anchor-hover:darken(@anchor-color, 10%);
-// @anchor-color:#6997ba;
-// @anchor-color:darken(#f47d23, 10%);
-// @anchor-color:darken(#98d5f2, 20%);
-@anchor-color:#99b852;
-@anchor-color:darken(#99b852, 10%);
-@anchor-color:#74991f;
 @anchor-color:#6d9b05;
+@anchor-hover:darken(@anchor-color, 10%);
 
 @text-shadow-lighten: '0 1px 1px #fff';
 
@@ -264,7 +257,6 @@ html{
 
 body{
 	background:#f5f4f1 url('../images/structure/bg.png') 0px 0px repeat;
-	color:@content-color;
 	color:#000;
 	font:normal 18px/30px @font-serif-enhanced-light;
 	height:100%;
@@ -335,13 +327,11 @@ h1, h2, h3, h4, h5{
 }
 
 h1{
-	font:normal 28px/32px @font-serif-enhanced-light;
 	font:normal 30px/32px @font-serif-enhanced-light;
 	margin-top:0.4em;
 }
 
 h2{
-	font:normal 20px/30px @font-serif-enhanced-light-italic;
 	font:normal 22px/30px @font-serif-enhanced;
 	margin:1.5em 0px 1em 0px;
 	color:#638ab1;
@@ -351,7 +341,6 @@ h3{
 	color:darken(@content-color, 5%);
 	font:normal 14px/30px @font-sans-serif-enhanced-bold;
 	text-transform:uppercase;
-	// color:#638ab1;
 }
 
 h4{
@@ -430,36 +419,13 @@ blockquote{
 
 .wrapper_banner{
 	background:none;
-	// background:url('../images/structure/bg-blackboard.jpg') center center repeat !important;
-	// background:url('../images/structure/chairs.jpg') center center repeat !important;
-
-	// background:#3e522b url('../images/structure/chairs.jpg') 0% 10% repeat;
-	// background-size:100% auto;
-	// box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.30);
 }
 
 	.banner{
 		color:@content-color;
 		font:normal 24px/36px @font-serif-enhanced-light;
 		height:auto !important;
-		margin:40px auto !important;
-
-		// font:normal 24px/36px @font-sans-serif-enhanced-light;
-		// font:normal 26px/39px @font-serif-enhanced-light;
-		// color:lighten(@content-color, 30%);
 		margin:60px auto !important;
-
-		/*
-		font:normal 28px/42px @font-serif-enhanced-light;
-		// font:normal 32px/50px @font-serif-enhanced-light;
-		margin:60px auto !important;
-		color:lighten(@content-color, 40%);
-		text-shadow:0.1em 0.1em 0.15em #000, 0.0em 0.0em 0.25em #000;
-		// text-align:center;
-		*/
-
-		// font:normal 25px/42px @font-serif-enhanced-light;
-		// margin:60px auto 40px auto !important;
 	}
 
 	.banner img{
@@ -476,12 +442,6 @@ blockquote{
 
 .wrapper_main{
 	background:none;
-	// background:url('../images/structure/bg-stripe.png') top center repeat;
-	// background:url('../images/structure/bg-stripe-dotted.png') top center repeat;
-	// background:url('../images/structure/fish.png') center center no-repeat;
-	// background:rgba(66, 55, 13, 0.10);	
-	// background:rgba(99, 77, 18, 0.12);	
-	// background:rgba(129, 93, 25, 0.12);	
 }
 
 	.main{
@@ -498,21 +458,12 @@ blockquote{
 
 	.date_banner{
 		height:auto !important;
-		margin:40px auto 32px auto !important;
-		margin:60px auto 52px auto !important;
-		margin:80px auto 72px auto !important;
 		margin:100px auto 100px auto !important;
 		text-align:center;
 	}
 
 .wrapper_footer{
-	// background:#2E3133;
-	// background:rgba(46, 39, 21, 0.00);	
 	background:rgba(66, 55, 13, 0.0);	
-	// background:rgba(66, 55, 13, 0.10);	
-	// background:rgba(99, 77, 18, 0.12);	
-	// background:rgba(129, 93, 25, 0.12);	
-	// display:none;
 }
 
 	.footer{
@@ -550,7 +501,7 @@ a.language{
 	height:40px;
 	margin:10px 0px 0px 0px;
 	text-indent:-5000px;
-	opacity:0.7;
+	opacity:0.8;
 	width:135px;
 }
 
@@ -619,7 +570,6 @@ div.content img{
 
 div.content ul{
 	color:@content-color;
-	// font-family:@font-serif-enhanced;
 	margin:1em 0px 1em 25px;
 }
 
@@ -659,37 +609,28 @@ table{
 /* Date banner content
 ============================================================================= */
 .date_banner{
-	text-align:left;
 	text-align:center;
 }
 
 	.date_banner .leader{
-		color:darken(#638ab1, 08%);
 		color:darken(@content-color, 5%);
 		padding:0px 0px 30px 0px;
 	}
 
 	.date_banner .date{
-		color:#638ab1;
 		color:darken(#638ab1, 08%);
-		font:normal 30px/32px @font-serif-enhanced-light;
 		font:normal 36px/38px @font-serif-enhanced;
 		padding:0px 0px 10px 0px;
 	}
 
 	.date_banner .address{
-		color:@content-color;
-		color:darken(#638ab1, 08%);
 		color:#638ab1;
-		font:normal 16px/24px @font-serif-enhanced-light;
 		font:normal 14px/24px @font-sans-serif-enhanced;
 		text-transform:uppercase;
 	}
 
 /* Disqus Content
 ============================================================================= */
-
-// Header
 #dsq-global-toolbar{
 	display:none !important;
 }
@@ -698,7 +639,6 @@ table{
 	font:normal 14px/30px @font-serif-enhanced !important;
 }
 
-// Write
 .dsq-avatar{
 	display:none !important;
 }
@@ -707,12 +647,10 @@ table{
 	margin-left:0px !important;
 }
 
-// Comments Header
 #dsq-sort-by select{
 	display:none !important;
 }
 
-// Comments
 .dsq-comment-header{
 	padding-bottom:5px !important;
 }
@@ -722,7 +660,6 @@ table{
 }
 
 	.dsq-commenter-name{
-		color:#638ab1 !important;
 		color:@anchor-color !important;
 		font:normal 18px/28px @font-serif-enhanced-light !important;
 		font-weight:normal !important;
@@ -740,7 +677,6 @@ table{
 		opacity:1 !important;
 	}
 
-// Footer
 #dsq-pagination{
 	display:none !important;
 }
