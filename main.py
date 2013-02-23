@@ -102,4 +102,6 @@ if __name__ == '__main__':
         'debug_mode_on_hostnames': ('laskey.local', 'cnsmac3.bu.edu')
     }
     app_setup = AppSetup(app_config).return_setup()
+    # Use a single % in templates
+    app.jinja_env.line_statement_prefix = '%'
     app.run(**app_setup)

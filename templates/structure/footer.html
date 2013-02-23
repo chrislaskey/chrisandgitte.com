@@ -1,12 +1,7 @@
 % with
-<div class="row">
-	<div class="span10 offset1">
-		% if is_responsive
-		%	set responsive_text = 'On'
-		% else
-		%	set responsive_text = 'Off'
-		% endif
-		<a class="is_responsive" href="#">Mobile {{ responsive_text }}</a>
-	</div>
-</div>
+% if language == 'en'
+	<a class="language language_be" href="{{ mirror_language_link }}">Vlaams</a>
+% else
+	<a class="language language_en" href="{{ mirror_language_link }}">English</a>
+% endif
 % endwith

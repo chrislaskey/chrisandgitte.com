@@ -4,7 +4,7 @@ from library.utilities import Utilities
 RequestParser centralizes the processing of a request.
 
 Tasks common to every page request should abstracted away and be done inside
-the RequestParser or one of it's child classes
+the RequestParser or one of it's child classes.
 '''
 class RequestParser():
 
