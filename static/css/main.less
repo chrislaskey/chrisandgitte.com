@@ -642,30 +642,33 @@ table.data{
 		max-width:none !important;
 	}
 
-/* Date banner content
-============================================================================= */
-.date_banner{
-	text-align:center;
+.photo-album{
+	margin-left:-10px;
 }
-
-	.date_banner .leader{
-		color:darken(@content-color, 5%);
-		padding:0px 0px 30px 0px;
+	
+	.photo-album .image{
+		display:block;
+		margin-bottom:20px;
 	}
 
-	.date_banner .date{
-		color:darken(#638ab1, 08%);
-		font:normal 36px/38px @font-serif-enhanced;
-		padding:0px 0px 10px 0px;
-	}
+		.photo-album .image a{
+			background: #cec8bd;
+			border:1px solid #e5e2dc;
+		 	display:inline-block;
+		 	padding:7px;
 
-	.date_banner .address{
-		color:#638ab1;
-		font:normal 14px/24px @font-sans-serif-enhanced;
-		text-transform:uppercase;
-	}
+			-webkit-box-shadow: 0 1px 1px 2px rgba(185, 180, 175, 0.30);
+			-moz-box-shadow: 0 1px 1px 2px rgba(185, 180, 175, 0.30);
+			box-shadow: 0 1px 1px 2px rgba(185, 180, 175, 0.30);
+		}
 
-/* Disqus Content
+			.photo-album .image img{
+				border:1px solid #ddd8cf;
+				display:block;
+				margin:0px auto;
+			}
+
+/* Guest Book Content
 ============================================================================= */
 #dsq-global-toolbar{
 	display:none !important;
@@ -727,12 +730,6 @@ table.data{
 		font-size:13px;
 	}
 
-/* Footer content
-============================================================================= */
-.footer a{
-	color:@content-color;
-}
-
 /* Save the date
 ============================================================================= */
 table.save-the-date{
@@ -746,6 +743,36 @@ table.save-the-date{
 	border:none;
 	padding:0px;
 	margin:0px;
+}
+
+/* Date banner content
+============================================================================= */
+.date_banner{
+	text-align:center;
+}
+
+	.date_banner .leader{
+		color:darken(@content-color, 5%);
+		padding:0px 0px 30px 0px;
+	}
+
+	.date_banner .date{
+		color:darken(#638ab1, 08%);
+		font:normal 36px/38px @font-serif-enhanced;
+		padding:0px 0px 10px 0px;
+	}
+
+	.date_banner .address{
+		color:#638ab1;
+		font:normal 14px/24px @font-sans-serif-enhanced;
+		text-transform:uppercase;
+	}
+
+
+/* Footer content
+============================================================================= */
+.footer a{
+	color:@content-color;
 }
 
 /* Print

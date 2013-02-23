@@ -13,15 +13,15 @@
 % endif
 
 % macro _photo_album_image(image)
-	<span class="five columns" style="display:block; background: rgba(96, 75, 23, 0.10); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; margin-bottom:20px;">
-		<a href="{{ image }}" style="display:block; margin:12px;">
-		    <img src="{{ image }}" style="display:block; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; margin:0px auto;"/>
+	<span class="image five columns">
+		<a href="{{ image }}">
+		    <img src="{{ image }}"/>
 		</a>
 	</span>
 % endmacro
 
 % macro _photo_album(images)
-    <div class="photo-album" style="margin-left:-10px;">
+    <div class="photo-album">
 	% for image in images:
 		{{ _photo_album_image(image) }}
 	% endfor
