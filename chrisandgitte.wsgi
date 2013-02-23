@@ -12,3 +12,4 @@ def add_to_sys_path ():
 add_to_sys_path()
 
 from main import app as application
+application.jinja_env.line_statement_prefix = '%'
