@@ -1,5 +1,5 @@
 from flask import g, request
-# from utilities.sqlite import query as sqlite_query
+from utils.sqlite import query
 
 class RSVP:
 
@@ -82,10 +82,10 @@ class RSVPDatabase():
         fields = ', '.join(escaped_columns)
         placeholder_values = ['?'] * len(self.columns)
         placeholder_values = ', '.join(placeholder_values)
-        query = 'INSERT INTO main.rsvps ({0}) VALUES ({1})'.format(
+        insert_query = 'INSERT INTO main.rsvps ({0}) VALUES ({1})'.format(
             fields, placeholder_values
         )
-        return query
+        return insert_query
 
     def _get_insert_args(self):
         args = []
