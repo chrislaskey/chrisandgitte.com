@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS "main"."rsvps" (
 	 "attending" text NOT NULL,
 	 "name" text NOT NULL,
 	 "guests" text NOT NULL,
-	 "comments" text NOT NULL,
 	 "allergies" text NOT NULL,
+	 "comments" text NOT NULL,
 	 "date" text NOT NULL
 );
 
