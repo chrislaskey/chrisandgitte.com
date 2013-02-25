@@ -6,7 +6,8 @@ Environment().add_virtualenv_site_packages_to_path(__file__)
 from flask import Flask, g, render_template, request
 from lib.requestparser import PageRequestParser
 from lib.templateparser import TemplateVariableParser
-from lib.weddingphotoalbum import *
+from lib.weddingphotoalbum import WeddingPhotoAlbumImages
+from lib.rsvp import RSVP
 
 app = Flask(__name__)
 
@@ -47,8 +48,10 @@ def guest_book(lang):
     common_page_processing()
     return render_template('site/guest-book.html', **g.templatevars)
 
-@app.route('/<lang>/rsvp/')
+@app.route('/<lang>/rsvp/', methods = ['GET', 'POST'])
 def rsvp(lang):
+    if request.method == 'POST':
+        RSVP().handle()
     common_page_processing()
     return render_template('site/rsvp.html', **g.templatevars)
 
