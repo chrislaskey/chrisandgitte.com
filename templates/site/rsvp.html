@@ -40,12 +40,82 @@
 		{{ _error_message(form_errors) }}
 	% endif
 
+	<p>Please RSVP by August 1, 2013. If you need more time, let us know!</p>
+
+	<p>Already RSVP'd but plans have changed? No problem! Submit a new RSVP form - we'll only look at the latest one submitted. Trickier situation than that? Contact either of us and we'll figure it out together.</p>
+	
 	<form action="" method="post">
-		Attending <input checked="checked" name="attending" type="radio" value="yes"><label>Yes</label></input><input name="attending" type="radio" value="no"><label>No</label></input><br/>
-		Your Name <input name="name" type="text" value="{{ _value('name') }}"/><br/>
-		Guest Name(s) <input name="guests" type="text" value="{{ _value('guests') }}"/><br/>
-		Food Preferences / Allergies <textarea name="allergies">{{ _value('allergies') }}</textarea><br/>
-		Other comments <textarea name="comments">{{ _value('comments') }}</textarea><br/>
-		<input name="save" type="submit">
+		<table class="rsvp">
+			<tbody class="question">
+				<tr>
+					<td>
+						<label for="attending">Are you coming?</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input checked="checked" name="attending" type="radio" value="yes"><label>Yes, we're in!</label></input><input name="attending" type="radio" value="no"><label>No, we can't make it</label></input>
+					</td>
+				</tr>
+			</tbody>
+			<tbody class="question">
+				<tr>
+					<td>
+						<label for="name">What's your name?</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input name="name" type="text" value="{{ _value('name') }}"/>
+					</td>
+				</tr>
+			</tbody>
+			<tbody class="question">
+				<tr>
+					<td>
+						<label for="guests">What are the names of your guests?</label>
+						<p>If you're over the age of 18 you're welcome - and encouraged! - to bring a guest. Don't be shy! Want to bring a date but not sure who yet, just write "guest" and we'll reserve a space.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input name="guests" type="text" value="{{ _value('guests') }}"/>
+					</td>
+				</tr>
+			</tbody>
+			<tbody class="question">
+				<tr>
+					<td>
+						<label for="allergies">Food Preferences:</label>
+						<p>Prefer red meat? Don't like fish? Allergic to gluten? Let us know!</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<textarea name="allergies">{{ _value('allergies') }}</textarea>
+					</td>
+				</tr>
+			</tbody>
+			<tbody class="question">
+				<tr>
+					<td>
+						<label for="comments">Other Comments:</label>
+						<p>Anything else we should know to make the wedding experience the best for you and your guests?</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<textarea name="comments">{{ _value('comments') }}</textarea>
+					</td>
+				</tr>
+			</tbody>
+			<tbody class="submit">
+				<tr>
+					<td>
+						<input name="save" type="submit" value="Submit RSVP">
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 % endblock
