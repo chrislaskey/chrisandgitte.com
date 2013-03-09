@@ -18,8 +18,17 @@
 	% else
 
 	% endif
+
+	% if form_errors
+		<div class="message error">{{ form_errors }}</div>
+	% endif
+
 	<form action="" method="post">
-		<input name="name" type="text"/>
+		Attending <input checked="checked" name="attending" type="radio" value="yes"><label>Yes</label></input><input name="attending" type="radio" value="no"><label>No</label></input><br/>
+		Your Name <input name="name" type="text"/><br/>
+		Guest Name(s) <input name="guests" type="text"/><br/>
+		Food Preferences / Allergies <input name="allergies" type="text"/><br/>
+		Other comments <input name="comments" type="text"/><br/>
 		<input name="save" type="submit">
 	</form>
 % endblock
