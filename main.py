@@ -50,9 +50,9 @@ def guest_book(lang):
 
 @app.route('/<lang>/rsvp/', methods = ['GET', 'POST'])
 def rsvp(lang):
+    common_page_processing()
     if request.method == 'POST':
         RSVP().handle()
-    common_page_processing()
     return render_template('site/rsvp.html', **g.templatevars)
 
 @app.route('/<lang>/save-the-date/')

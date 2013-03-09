@@ -7,7 +7,6 @@ class RSVP:
         form_errors = self._get_form_errors()
         if form_errors:
             g.templatevars['form_errors'] = form_errors
-            return
 
     def _get_form_errors(self):
         values = request.form
@@ -21,41 +20,43 @@ class RSVP:
 
 class RSVPFormParser():
 
-    required_fields = [
-        {'attending': 'Please select whether you are attending'},
-        {'name': 'Please put your full name in the "Name" field'}
-    ]
-
     parsed = False
+    required_fields = {
+        'attending': 'Please select whether you are attending',
+        'name': 'Please put your full name in the "Name" field'
+    }
 
     def set_values(self, values):
         self.values = values
-        self.parsed = False
+        self._parse_values()
 
     def has_errors(self):
-        if not self.parsed:
-            self._parse_values()
         if self.errors:
             return True
         else:
             return False
 
-    def get_error_message(self, values):
-        if not self.parsed:
-            self._parse_values()
+    def get_error_message(self):
         if not self.errors:
             return ''
         error_message = self._create_error_message()
         return error_message
 
-    def _create_error_message(self):
-        # TODO
-        pass
-
     def _parse_values(self):
-        # TODO
+        errors = []
+        for key, error in self.required_fields.iteritems():
+            if not self.values[key]:
+                errors.append(error)
+        self.errors = errors
         self.parsed = True
-        self.errors = []
+
+    def _create_error_message(self):
+        # TODO: Instead of creating HTML error message here, send error list to
+        # Jinja template macro and create message in the templates.
+        error_message = 'Oops! We need some more information:<br/>'
+        for error in self.errors:
+            error_message = error_message + '{0}'.format(error)
+        return error_message
 
 class RSVPDatabase():
 
