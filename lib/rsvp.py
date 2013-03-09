@@ -13,34 +13,30 @@ class RSVP:
         parser = RSVPFormParser()
         parser.set_values(values)
         if parser.has_errors():
-            error_message = parser.get_error_message()
+            error_message = parser.get_error_messages()
         else:
             error_message = ''
         return error_message
 
 class RSVPFormParser():
 
-    parsed = False
     required_fields = {
         'attending': 'Please select whether you are attending',
         'name': 'Please put your full name in the "Name" field'
     }
+
+    def set_required_fields(self, fields_dict):
+        self.required_fields = fields_dict
 
     def set_values(self, values):
         self.values = values
         self._parse_values()
 
     def has_errors(self):
-        if self.errors:
-            return True
-        else:
-            return False
+        return True if self.errors else False
 
-    def get_error_message(self):
-        if not self.errors:
-            return ''
-        error_message = self._create_error_message()
-        return error_message
+    def get_error_messages(self):
+        return self.errors
 
     def _parse_values(self):
         errors = []
@@ -48,15 +44,6 @@ class RSVPFormParser():
             if not self.values[key]:
                 errors.append(error)
         self.errors = errors
-        self.parsed = True
-
-    def _create_error_message(self):
-        # TODO: Instead of creating HTML error message here, send error list to
-        # Jinja template macro and create message in the templates.
-        error_message = 'Oops! We need some more information:<br/>'
-        for error in self.errors:
-            error_message = error_message + '{0}'.format(error)
-        return error_message
 
 class RSVPDatabase():
 

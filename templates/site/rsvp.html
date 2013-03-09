@@ -12,6 +12,17 @@
 	% set title = ''
 % endif
 
+% macro _error_message(form_errors)
+	<div class="message error">
+	<p>Oops! We need some more information:</p>
+	<ul>
+		% for error in form_errors 
+		<li>{{ error }}</li>
+		% endfor
+	</ul>
+	</div>
+% endmacro
+
 % block content
 	% if language == 'en'
 
@@ -20,7 +31,7 @@
 	% endif
 
 	% if form_errors
-		<div class="message error">{{ form_errors }}</div>
+		{{ _error_message(form_errors) }}
 	% endif
 
 	<form action="" method="post">
