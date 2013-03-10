@@ -41,7 +41,7 @@ class RSVPFormParser():
     def _parse_values(self):
         errors = []
         for key, error in self.required_fields.iteritems():
-            if not self.values[key]:
+            if key not in self.values or not self.values[key]:
                 errors.append(error)
         self.errors = errors
 
