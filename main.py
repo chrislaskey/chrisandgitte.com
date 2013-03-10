@@ -4,8 +4,7 @@ from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path(__file__)
 
 from flask import Flask, g, render_template, request
-from lib.requestparser import PageRequestParser
-from lib.templateparser import TemplateVariableParser
+from lib.pageprocessing import common_page_processing
 from lib.weddingphotoalbum import WeddingPhotoAlbumImages
 from lib.rsvp import RSVP
 
@@ -71,18 +70,6 @@ def homepage():
 def not_found(error):
     common_page_processing()
     return render_template('errors/404.html', **g.templatevars), 404
-
-def common_page_processing():
-    g.requestvars = return_page_requestvars()
-    g.templatevars = return_page_templatevars()
-
-def return_page_requestvars():
-    return PageRequestParser(request).return_requestvars()
-
-def return_page_templatevars():
-    templatevar_parser = TemplateVariableParser(request, g.requestvars)
-    templatevar_parser.set_templatevar('post', request.form)
-    return templatevar_parser.return_templatevars()
 
 if __name__ == '__main__':
     app.jinja_env.line_statement_prefix = '%'
