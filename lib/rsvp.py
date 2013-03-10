@@ -1,15 +1,16 @@
-from flask import g, request
 from utils.sqlite import query
 
 class RSVP:
 
-    def handle(self):
+    def parse_request_and_return_templatevars(self, values):
+        self.values = values
+        templatevars = {}
         form_errors = self._get_form_errors()
-        if form_errors:
-            g.templatevars['form_errors'] = form_errors
-        else:
-            g.templatevars['form_success'] = True
-            g.templatevars['is_attending'] = self._is_attending()
+        templatevars['form_errors'] = form_errors
+        if not form_errors:
+            templatevars['form_success'] = True
+            templatevars['is_attending'] = self._is_attending()
+        return templatevars
 
     def _get_form_errors(self):
         self._load_parser()
@@ -18,7 +19,7 @@ class RSVP:
 
     def _load_parser(self):
         if not hasattr(self, 'parser') or not self.parser:
-            values = request.form
+            values = self.values
             parser = RSVPFormParser()
             parser.set_values(values)
             self.parser = parser

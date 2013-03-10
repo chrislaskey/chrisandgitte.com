@@ -13,6 +13,3 @@ def _return_page_templatevars():
     templatevar_parser = TemplateVariableParser(request, g.requestvars)
     templatevar_parser.set_templatevar('post', request.form)
     return templatevar_parser.return_templatevars()
-
-
-

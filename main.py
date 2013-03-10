@@ -51,7 +51,8 @@ def guest_book(lang):
 def rsvp(lang):
     common_page_processing()
     if request.method == 'POST':
-        RSVP().handle()
+        new_vars = RSVP().parse_request_and_return_templatevars(request.form)
+        g.templatevars.update(new_vars)
     return render_template('site/rsvp.html', **g.templatevars)
 
 @app.route('/<lang>/save-the-date/')
