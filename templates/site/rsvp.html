@@ -23,6 +23,17 @@
 	</div>
 % endmacro
 
+% macro _success_message(is_attending)
+	% if is_attending
+		% set message = "So glad you can make it!"
+	% else
+		% set message = "You'll be there in spirit!"
+	% endif
+	<div class="message success">
+		<p>We've received your RSVP. {{ message }}</p>
+	</div>
+% endmacro
+
 % macro _value(name)
 {% if name in post -%}
 	{{ post[name] }}
@@ -42,87 +53,97 @@
 
 	% endif
 
-	% if form_errors
+	% if form_success
+
+		{{ _success_message(is_attending) }}
+
+	% elif form_errors
+
 		{{ _error_message(form_errors) }}
+
 	% endif
 
-	<p>Please RSVP by August 1, 2013. If you need more time, let us know!</p>
+		<p>Please RSVP by August 1, 2013. If you need more time, let us know!</p>
 
-	<p>Already RSVP'd but plans have changed? No problem! Submit a new RSVP form - we'll only look at the latest one submitted. Trickier situation than that? Contact either of us and we'll figure it out together.</p>
-	
-	<form action="" method="post">
-		<table class="rsvp">
-			<tbody class="question">
-				<tr>
-					<td>
-						<label class="question" for="attending">Are you coming?</label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input {{ _radio_checked('attending', 'yes') }} class="radio" name="attending" type="radio" value="yes"><label class="radio answer">Yes, we're in!</label></input>
-						<input {{ _radio_checked('attending', 'no') }} class="radio" name="attending" type="radio" value="no"><label class="radio answer">No, we can't make it</label></input>
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="question">
-				<tr>
-					<td>
-						<label class="question" for="name">What's your name?</label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input class="text" name="name" type="text" value="{{ _value('name') }}"/>
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="question">
-				<tr>
-					<td>
-						<label class="question" for="guests">What are the names of your guests?</label>
-						<p>Children are welcome, and adults can bring a guest. Want to bring a date but not sure who it will be yet? Just write "guest" and we'll reserve a space!</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input class="text guests" name="guests" type="text" value="{{ _value('guests') }}"/>
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="question">
-				<tr>
-					<td>
-						<label class="question" for="allergies">Food Preferences</label>
-						<p>Prefer red meat? Don't like fish? Are a vegetarian? Allergic to gluten? Let us know!</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<textarea name="allergies">{{ _value('allergies') }}</textarea>
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="question">
-				<tr>
-					<td>
-						<label class="question" for="comments">Other Comments</label>
-						<p>Anything else we should know to make the wedding experience the best for you and your guests?</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<textarea name="comments">{{ _value('comments') }}</textarea>
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="submit">
-				<tr>
-					<td>
-						<input class="submit" name="save" type="submit" value="Submit RSVP">
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+		<p>Already RSVP'd but plans have changed? No problem! Submit a new RSVP form - we'll only look at the latest one submitted. Trickier situation than that? Contact either of us and we'll figure it out together.</p>
+
+	% if not form_success
+		
+		<form action="" method="post">
+			<table class="rsvp">
+				<tbody class="question">
+					<tr>
+						<td>
+							<label class="question" for="attending">Are you coming?</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input {{ _radio_checked('attending', 'yes') }} class="radio" name="attending" type="radio" value="yes"><label class="radio answer">Yes, we're in!</label></input>
+							<input {{ _radio_checked('attending', 'no') }} class="radio" name="attending" type="radio" value="no"><label class="radio answer">No, we can't make it</label></input>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="question">
+					<tr>
+						<td>
+							<label class="question" for="name">What's your name?</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="text" name="name" type="text" value="{{ _value('name') }}"/>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="question">
+					<tr>
+						<td>
+							<label class="question" for="guests">What are the names of your guests?</label>
+							<p>Children are welcome, and adults can bring a guest. Want to bring a date but not sure who it will be yet? Just write "guest" and we'll reserve a space!</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="text guests" name="guests" type="text" value="{{ _value('guests') }}"/>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="question">
+					<tr>
+						<td>
+							<label class="question" for="allergies">Food Preferences</label>
+							<p>Prefer red meat? Don't like fish? Are a vegetarian? Allergic to gluten? Let us know!</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea name="allergies">{{ _value('allergies') }}</textarea>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="question">
+					<tr>
+						<td>
+							<label class="question" for="comments">Other Comments</label>
+							<p>Anything else we should know to make the wedding experience the best for you and your guests?</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea name="comments">{{ _value('comments') }}</textarea>
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="submit">
+					<tr>
+						<td>
+							<input class="submit" name="save" type="submit" value="Submit RSVP">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	% endif
+
 % endblock

@@ -7,16 +7,26 @@ class RSVP:
         form_errors = self._get_form_errors()
         if form_errors:
             g.templatevars['form_errors'] = form_errors
+        else:
+            g.templatevars['form_success'] = True
+            g.templatevars['is_attending'] = self._is_attending()
 
     def _get_form_errors(self):
-        values = request.form
-        parser = RSVPFormParser()
-        parser.set_values(values)
-        if parser.has_errors():
-            error_message = parser.get_error_messages()
-        else:
-            error_message = ''
-        return error_message
+        self._load_parser()
+        errors = self.parser.get_errors()
+        return errors
+
+    def _load_parser(self):
+        if not hasattr(self, 'parser') or not self.parser:
+            values = request.form
+            parser = RSVPFormParser()
+            parser.set_values(values)
+            self.parser = parser
+
+    def _is_attending(self):
+        self._load_parser()
+        is_attending = self.parser.is_attending()
+        return is_attending
 
 class RSVPFormParser():
 
@@ -24,6 +34,7 @@ class RSVPFormParser():
         'attending': 'Please select whether you are attending',
         'name': 'Please put your full name in the "Name" field'
     }
+    attending_field = 'attending'
 
     def set_required_fields(self, fields_dict):
         self.required_fields = fields_dict
@@ -32,18 +43,31 @@ class RSVPFormParser():
         self.values = values
         self._parse_values()
 
-    def has_errors(self):
-        return True if self.errors else False
-
-    def get_error_messages(self):
+    def get_errors(self):
         return self.errors
 
+    def is_attending(self):
+        return self.attending
+
     def _parse_values(self):
+        self._parse_error_values()
+        self._parse_attending_value()
+
+    def _parse_error_values(self):
         errors = []
         for key, error in self.required_fields.iteritems():
             if key not in self.values or not self.values[key]:
                 errors.append(error)
         self.errors = errors
+
+    def _parse_attending_value(self):
+        attending = False
+        field = self.attending_field
+        if field in self.values:
+            response = self.values[field]
+            if response == "yes":
+                attending = True
+        self.attending = attending
 
 class RSVPDatabase():
 
