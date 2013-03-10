@@ -29,6 +29,12 @@
 {%- endif %}
 % endmacro
 
+% macro _radio_checked(name, value)
+{% if name in post and post[name] == value -%}
+ checked="checked"
+{%- endif %}
+% endmacro
+
 % block content
 	% if language == 'en'
 
@@ -54,7 +60,8 @@
 				</tr>
 				<tr>
 					<td>
-						<input class="radio" name="attending" type="radio" value="yes"><label class="radio answer">Yes, we're in!</label></input><input class="radio" name="attending" type="radio" value="no"><label class="radio answer">No, we can't make it</label></input>
+						<input {{ _radio_checked('attending', 'yes') }} class="radio" name="attending" type="radio" value="yes"><label class="radio answer">Yes, we're in!</label></input>
+						<input {{ _radio_checked('attending', 'no') }} class="radio" name="attending" type="radio" value="no"><label class="radio answer">No, we can't make it</label></input>
 					</td>
 				</tr>
 			</tbody>
@@ -79,7 +86,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input class="text" name="guests" type="text" value="{{ _value('guests') }}"/>
+						<input class="text guests" name="guests" type="text" value="{{ _value('guests') }}"/>
 					</td>
 				</tr>
 			</tbody>
@@ -112,7 +119,7 @@
 			<tbody class="submit">
 				<tr>
 					<td>
-						<input name="save" type="submit" value="Submit RSVP">
+						<input class="submit" name="save" type="submit" value="Submit RSVP">
 					</td>
 				</tr>
 			</tbody>
