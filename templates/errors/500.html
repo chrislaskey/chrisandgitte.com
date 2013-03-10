@@ -1,0 +1,25 @@
+% extends "page.html"
+
+% if language == 'en'
+	% set banner = ''
+% else
+	% set banner = ''
+% endif
+
+% if language == 'en'
+	% set title = 'Oops!'
+% else
+	% set title = 'Serverfout'
+% endif
+
+% block content
+	% if language == 'en'
+
+		<p>The server encountered an internal error and was unable to complete your request for the page {{ uri }}.</p>
+
+	% else
+
+		<p>De server heeft een interne fout en kon uw verzoek niet voltooien van de pagina {{ uri }}.</p>
+
+	% endif
+% endblock

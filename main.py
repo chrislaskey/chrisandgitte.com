@@ -74,6 +74,11 @@ def not_found(error):
     common_page_processing()
     return render_template('errors/404.html', **g.templatevars), 404
 
+@app.errorhandler(500)
+def server_error(error):
+    common_page_processing()
+    return render_template('errors/500.html', **g.templatevars), 500
+
 if __name__ == '__main__':
     app.jinja_env.line_statement_prefix = '%'
     app.run(debug=True)
