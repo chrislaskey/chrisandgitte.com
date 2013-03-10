@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input checked="checked" name="attending" type="radio" value="yes"><label class="answer">Yes, we're in!</label></input><input name="attending" type="radio" value="no"><label class="answer">No, we can't make it</label></input>
+						<input class="radio" name="attending" type="radio" value="yes"><label class="radio answer">Yes, we're in!</label></input><input class="radio" name="attending" type="radio" value="no"><label class="radio answer">No, we can't make it</label></input>
 					</td>
 				</tr>
 			</tbody>
@@ -66,7 +66,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input name="name" type="text" value="{{ _value('name') }}"/>
+						<input class="text" name="name" type="text" value="{{ _value('name') }}"/>
 					</td>
 				</tr>
 			</tbody>
@@ -74,12 +74,12 @@
 				<tr>
 					<td>
 						<label class="question" for="guests">What are the names of your guests?</label>
-						<p>If you're over the age of 18 you're welcome - and encouraged! - to bring a guest. Don't be shy! Want to bring a date but not sure who yet, just write "guest" and we'll reserve a space.</p>
+						<p>Children are welcome, and adults can bring a guest. Want to bring a date but not sure who it will be yet? Just write "guest" and we'll reserve a space!</p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input name="guests" type="text" value="{{ _value('guests') }}"/>
+						<input class="text" name="guests" type="text" value="{{ _value('guests') }}"/>
 					</td>
 				</tr>
 			</tbody>
@@ -87,7 +87,7 @@
 				<tr>
 					<td>
 						<label class="question" for="allergies">Food Preferences</label>
-						<p>Prefer red meat? Don't like fish? Allergic to gluten? Let us know!</p>
+						<p>Prefer red meat? Don't like fish? Are a vegetarian? Allergic to gluten? Let us know!</p>
 					</td>
 				</tr>
 				<tr>

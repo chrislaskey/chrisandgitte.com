@@ -126,6 +126,11 @@
             font-size: 18px !important;
             line-height: 32px !important;
         }
+
+        table.rsvp input.text,
+        table.rsvp textarea{
+            width:94% !important;
+        }
     }
 
 
@@ -189,6 +194,11 @@
         div.banner p{ margin:0px 0px 0px 0px !important; }
         div.footer { display: block !important; }
         div.footer a.language{ display: block !important; }
+
+        table.rsvp input.text,
+        table.rsvp textarea{
+            width:94% !important;
+        }
     }
 
 
