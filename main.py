@@ -75,5 +75,12 @@ def not_found(error):
     return render_template('errors/404.html', **g.templatevars), 404
 
 if __name__ == '__main__':
+    
+    from utils.sqlite import query as sqlite_query
+    results = sqlite_query("SELECT * FROM main.rsvps")
+    row = results[0]
+    print(row)
+    
+
     app.jinja_env.line_statement_prefix = '%'
     app.run(debug=True)

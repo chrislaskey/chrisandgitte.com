@@ -68,20 +68,18 @@ class TestRSVPDatabase:
         }
         self.db.save(input_values)
 
-class request_stub:
+class query_stub:
 
-    def __init__(self):
-        stub = {
-            'attending': 'yes',
-            'name': 'Chris Laskey'
-        }
-        return stub
+    def __init__(self, *args, **kwargs):
+        pass
 
 class TestRSVP:
 
     def setup(self):
         "Set up test fixtures"
-        self.rsvp = RSVP()
+        rsvp = RSVP()
+        rsvp.set_query_method(query_stub)
+        self.rsvp = rsvp
 
     def teardown(self):
         "Tear down test fixtures"

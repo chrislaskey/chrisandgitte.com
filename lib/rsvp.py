@@ -3,6 +3,12 @@ from datetime import datetime
 
 class RSVP:
 
+    def __init__(self):
+        self.set_query_method(sqlite_query)
+
+    def set_query_method(self, db_query_method):
+        self.query = db_query_method
+
     def parse_and_save_request_and_return_templatevars(self, input_values):
         self.input_values = input_values
         self._set_templatevars()
@@ -37,11 +43,10 @@ class RSVP:
         return is_attending
 
     def _save_rsvp(self):
-        database = RSVPDatabase()
-        database.set_query_method(sqlite_query)
         values = self._get_database_values()
-        if not database.save(values):
-            raise Exception('Error saving RSVP to database.')
+        database = RSVPDatabase()
+        database.set_query_method(self.query)
+        database.save(values)
 
     def _get_database_values(self):
         values = self.input_values.copy()

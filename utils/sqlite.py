@@ -5,13 +5,14 @@ connection = None
 def query(query, args=()):
     connection = _get_connection()
     result_object = connection.execute(query, args)
+    connection.commit()
     columns = _get_columns(result_object.description)
     results = []
     for row in result_object.fetchall():
-        result = []
+        result = {}
         for column_index, value in enumerate(row):
             column = columns[column_index]
-            result.append({column: value})
+            result.update({column: value})
         results.append(result)
     return results
 
