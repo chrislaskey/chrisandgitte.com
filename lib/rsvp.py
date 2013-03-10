@@ -1,16 +1,23 @@
-from utils.sqlite import query
+from utils.sqlite import query as sqlite_query
+from datetime import datetime
 
 class RSVP:
 
-    def parse_request_and_return_templatevars(self, values):
-        self.values = values
+    def parse_and_save_request_and_return_templatevars(self, input_values):
+        self.input_values = input_values
+        self._set_templatevars()
+        if not self.errors:
+            self._save_rsvp()
+        return self.templatevars
+
+    def _set_templatevars(self):
         templatevars = {}
-        form_errors = self._get_form_errors()
-        templatevars['form_errors'] = form_errors
-        if not form_errors:
+        self.errors = self._get_form_errors()
+        templatevars['form_errors'] = self.errors
+        if not self.errors:
             templatevars['form_success'] = True
             templatevars['is_attending'] = self._is_attending()
-        return templatevars
+        self.templatevars = templatevars
 
     def _get_form_errors(self):
         self._load_parser()
@@ -19,7 +26,7 @@ class RSVP:
 
     def _load_parser(self):
         if not hasattr(self, 'parser') or not self.parser:
-            values = self.values
+            values = self.input_values
             parser = RSVPFormParser()
             parser.set_values(values)
             self.parser = parser
@@ -29,6 +36,18 @@ class RSVP:
         is_attending = self.parser.is_attending()
         return is_attending
 
+    def _save_rsvp(self):
+        database = RSVPDatabase()
+        database.set_query_method(sqlite_query)
+        values = self._get_database_values()
+        if not database.save(values):
+            raise Exception('Error saving RSVP to database.')
+
+    def _get_database_values(self):
+        values = self.input_values.copy()
+        values['date'] = datetime.now().isoformat()
+        return values
+
 class RSVPFormParser():
 
     required_fields = {
@@ -36,9 +55,6 @@ class RSVPFormParser():
         'name': 'Please put your full name in the "Name" field'
     }
     attending_field = 'attending'
-
-    def set_required_fields(self, fields_dict):
-        self.required_fields = fields_dict
 
     def set_values(self, values):
         self.values = values
@@ -75,9 +91,10 @@ class RSVPDatabase():
     columns = [
         'attending',
         'name',
-        'guest',
+        'guests',
         'allergies',
-        'comments'
+        'comments',
+        'date'
     ]
 
     def set_query_method(self, query_method):

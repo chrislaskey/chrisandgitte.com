@@ -51,7 +51,9 @@ def guest_book(lang):
 def rsvp(lang):
     common_page_processing()
     if request.method == 'POST':
-        new_vars = RSVP().parse_request_and_return_templatevars(request.form)
+        values = request.form.copy()
+        new_vars = RSVP().\
+                   parse_and_save_request_and_return_templatevars(values)
         g.templatevars.update(new_vars)
     return render_template('site/rsvp.html', **g.templatevars)
 
