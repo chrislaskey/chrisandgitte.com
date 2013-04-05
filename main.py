@@ -57,7 +57,7 @@ def rsvp(lang):
         new_vars = RSVP().\
                    parse_and_save_request_and_return_templatevars(values)
         g.templatevars.update(new_vars)
-        send_rsvp_email(mail, new_vars)
+        send_rsvp_email(mail, g.templatevars)
     return render_template('site/rsvp.html', **g.templatevars)
 
 @app.route('/<lang>/save-the-date/')
