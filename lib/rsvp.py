@@ -133,7 +133,7 @@ class RSVPDatabase():
         args = tuple(args)
         return args
 
-def send_rsvp_email(self, mail, values):
+def send_rsvp_email(mail, values):
     email_message = Message("RSVP Submitted")
     email_message.sender = "rsvp-noreply@chrisandgitte.com"
     email_message.recipients = [
