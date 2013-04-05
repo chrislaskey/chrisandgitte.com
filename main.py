@@ -60,7 +60,7 @@ def rsvp(lang):
     return render_template('site/rsvp.html', **g.templatevars)
 
 @app.route('/email-test/')
-def email_test(lang):
+def email_test():
     msg = Message("Hello")
     msg.recipients = ["chris.laskey@gmail.com"]
     msg.body = "testing body text"
