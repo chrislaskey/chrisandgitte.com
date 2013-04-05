@@ -1,0 +1,29 @@
+% macro _value(name)
+{% if name in post -%}
+	{{ post[name] }}
+{%- endif %}
+% endmacro
+
+Coming: {{ attending }}
+
+Name: {{ _value(name) }}
+
+Guest names: {{ _value(guests) }}
+
+Food preferences: {{ _value(allergies) }}
+
+Other comments: {{ _value(comments) }}
+
+% if not form_success
+
+The RSVP was not successfully submitted. The following errors occured:
+
+% for error in form_errors 
+	{{ error }}
+% endfor
+
+% else
+
+The RSVP was successfully submitted
+
+% endif 
