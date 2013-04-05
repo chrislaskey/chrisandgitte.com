@@ -1,4 +1,6 @@
 from utils.sqlite import query as sqlite_query
+from flask import render_template
+from flask.ext.sendmail import Message
 from datetime import datetime
 
 class RSVP:
@@ -130,3 +132,13 @@ class RSVPDatabase():
             args.append(escaped_value)
         args = tuple(args)
         return args
+
+def send_rsvp_email(self, mail, values):
+    email_message = Message("RSVP Submitted")
+    email_message.sender = "rsvp-noreply@chrisandgitte.com"
+    email_message.recipients = [
+        "chris.laskey@gmail.com", "gvenicx@gmail.com"
+    ]
+    email_template = render_template('email/rsvp.html', **values)
+    email_message.body = email_template
+    mail.send(email_message)
