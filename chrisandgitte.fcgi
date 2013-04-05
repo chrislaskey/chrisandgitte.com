@@ -5,7 +5,7 @@ Environment().add_virtualenv_site_packages_to_path()
 
 from flup.server.fcgi import WSGIServer
 from main import app
-from flask_mail import Mail
+from flask.ext.sendmail import Mail
 
 class ScriptNameStripper(object):
    def __init__(self, app):

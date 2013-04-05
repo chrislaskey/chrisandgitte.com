@@ -4,7 +4,7 @@ from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path(__file__)
 
 from flask import Flask, g, render_template, request
-from flask_mail import Mail, Message
+from flask.ext.sendmail import Mail, Message
 from lib.pageprocessing import common_page_processing
 from lib.weddingphotoalbum import WeddingPhotoAlbumImages
 from lib.rsvp import RSVP
@@ -62,8 +62,11 @@ def rsvp(lang):
 @app.route('/email-test/')
 def email_test():
     msg = Message("Hello")
+    msg.sender = "rsvp-noreply@chrisandgitte.com"
+    msg.sender = "laskey@laskey.local"
     msg.recipients = ["chris.laskey@gmail.com"]
     msg.body = "testing body text"
+    msg.html = "<h1>HTML test</h1>"
     mail.send(msg)
 
 @app.route('/<lang>/save-the-date/')

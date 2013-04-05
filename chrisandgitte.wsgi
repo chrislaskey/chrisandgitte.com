@@ -10,7 +10,7 @@ from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path(__file__)
 
 from main import app as application
-from flask_mail import Mail
+from flask.ext.sendmail import Mail
 
 if not application.debug:
     import logging

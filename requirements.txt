@@ -1,4 +1,4 @@
 Flask
 webassets
 PIL
-Flask-Mail
+Flask-Sendmail
