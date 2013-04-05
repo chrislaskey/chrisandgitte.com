@@ -5,6 +5,7 @@ Environment().add_virtualenv_site_packages_to_path()
 
 from flup.server.fcgi import WSGIServer
 from main import app
+from flask_mail import Mail
 
 class ScriptNameStripper(object):
    def __init__(self, app):
@@ -16,4 +17,5 @@ class ScriptNameStripper(object):
 
 app = ScriptNameStripper(app)
 app.jinja_env.line_statement_prefix = '%'
+mail = Mail(app)
 WSGIServer(app).run()
