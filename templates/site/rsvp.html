@@ -13,12 +13,23 @@
 % endif
 
 % macro _error_message(form_errors)
+	% if language == 'en'
+		% set error_messages = {
+			'attending': 'Please select whether you are attending',
+			'name': 'Please put your full name in the "Name" field'
+		}
+	% else
+		% set error_messages = {
+			'attending': 'Please select whether you are attending',
+			'name': 'Please put your full name in the "Name" field'
+		}
+	% endif
 	<div class="message error">
 		<p>Oops! We need some more information:</p>
 		<ul>
 			% for error in form_errors 
-			<li>{{ error }}</li>
-			% endfor
+				<li>{{ error_messages[error] }}</li>
+			% endfor 
 		</ul>
 	</div>
 % endmacro
