@@ -57,10 +57,11 @@ class RSVP:
 
 class RSVPFormParser():
 
-    required_fields = {
-        'attending': 'Please select whether you are attending',
-        'name': 'Please put your full name in the "Name" field'
-    }
+    # required_fields = {
+    #     'attending': 'Please select whether you are attending',
+    #     'name': 'Please put your full name in the "Name" field'
+    # }
+    required_fields = ['attending', 'name']
     attending_field = 'attending'
 
     def set_values(self, values):
@@ -79,9 +80,9 @@ class RSVPFormParser():
 
     def _parse_error_values(self):
         errors = []
-        for key, error in self.required_fields.iteritems():
-            if key not in self.values or not self.values[key]:
-                errors.append(error)
+        for field in self.required_fields:
+            if field not in self.values or not self.values[field]:
+                errors.append(field)
         self.errors = errors
 
     def _parse_attending_value(self):
