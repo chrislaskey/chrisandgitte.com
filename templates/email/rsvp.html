@@ -4,15 +4,11 @@
 {%- endif %}
 % endmacro
 
-Coming: {{ attending }}
-
-Name: {{ _value(name) }}
-
-Guest names: {{ _value(guests) }}
-
-Food preferences: {{ _value(allergies) }}
-
-Other comments: {{ _value(comments) }}
+Is attending: {{ _value("attending") }}
+Name: {{ _value("name") }}
+Guest names: {{ _value("guests") }}
+Food preferences: {{ _value("allergies") }}
+Other comments: {{ _value("comments") }}
 
 % if not form_success
 
