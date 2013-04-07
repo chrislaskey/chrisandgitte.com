@@ -57,10 +57,6 @@ class RSVP:
 
 class RSVPFormParser():
 
-    # required_fields = {
-    #     'attending': 'Please select whether you are attending',
-    #     'name': 'Please put your full name in the "Name" field'
-    # }
     required_fields = ['attending', 'name']
     attending_field = 'attending'
 
