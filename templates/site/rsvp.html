@@ -25,7 +25,7 @@
 	},
 	'intro': {
 		'en': "Already RSVP'd but plans have changed? No problem! Submit a new RSVP form - we'll only look at the latest one submitted. Trickier situation than that? Contact either of us and we'll figure it out together.",
-		'be': "Heeft u al beantwoord, maar de plannen zijn veranderd? Geen probleem! Voeg een nieuw RSVP formulier - we kijken alleen naar de laatste ingediend. Ingewikkelder situatie dan dat? Contact Gitte en we en oplossing vinden."
+		'be': "Heeft u al beantwoord, maar de plannen zijn veranderd? Geen probleem! Voeg een nieuw RSVP formulier - we kijken alleen naar de laatste ingediend. Ingewikkelder situatie dan dat? Contact Gitte en we zullen en oplossing vinden."
 	},
 	'attending_question': {
 		'en': "Are you coming?",
@@ -65,8 +65,12 @@
 	},
 	'comments_helper_text': {
 		'en': "Anything else we should know to make the wedding experience the best for you and your guests?",
-		'be': "Is er nog iets dat we moeten weten van u or uw gaste voor de bruiloft?"
+		'be': "Is er nog iets dat we moeten weten van u of uw gaste voor de bruiloft?"
 	},
+	'submit_button': {
+		'en': "Submit RSVP",
+		'be': "Toevoeg uw RSVP"
+	}
 }
 
 % macro _error_message(form_errors)
@@ -77,10 +81,10 @@
 			'name': 'Please put your full name in the "Name" field'
 		}
 	% else
-		% set error_intro = 'We hebben iets meer informative nodig:'
+		% set error_intro = 'We hebben iets meer informatie nodig:'
 		% set error_messages = {
-			'attending': 'Gelieve to vermelden of u deelneemt or niet',
-			'name': 'Neit vergeten on uw naam to schrijven'
+			'attending': 'Gelieve to vermelden of u deelneemt of niet',
+			'name': 'Niet vergeten on uw naam to schrijven'
 		}
 	% endif
 	<div class="message error">
@@ -106,7 +110,7 @@
 		% if is_attending
 			% set message = "Zo blij dat je kunt komen!"
 		% else
-			% set message = ""
+			% set message = "Jammer dat je niet kunt komen."
 		% endif
 	% endif
 	<div class="message success">
@@ -219,7 +223,7 @@
 				<tbody class="submit">
 					<tr>
 						<td>
-							<input class="submit" name="save" type="submit" value="Submit RSVP">
+							<input class="submit" name="save" type="submit" value="{{ _content('submit_button') }}">
 						</td>
 					</tr>
 				</tbody>
