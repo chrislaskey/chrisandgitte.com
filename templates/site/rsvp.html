@@ -131,9 +131,9 @@
 % endmacro
 
 % macro _content(key)
-	% if key in page_content
-		{{ page_content[key][language] }}
-	% endif
+{% if key in page_content -%}
+{{ page_content[key][language] }}
+{%- endif %}
 % endmacro
 
 % block content
