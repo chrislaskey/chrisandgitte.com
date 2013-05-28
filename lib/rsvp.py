@@ -1,4 +1,6 @@
 from utils.sqlite import query as sqlite_query
+from flask import render_template
+from flask.ext.sendmail import Message
 from datetime import datetime
 
 class RSVP:
@@ -55,10 +57,7 @@ class RSVP:
 
 class RSVPFormParser():
 
-    required_fields = {
-        'attending': 'Please select whether you are attending',
-        'name': 'Please put your full name in the "Name" field'
-    }
+    required_fields = ['attending', 'name']
     attending_field = 'attending'
 
     def set_values(self, values):
@@ -77,9 +76,9 @@ class RSVPFormParser():
 
     def _parse_error_values(self):
         errors = []
-        for key, error in self.required_fields.iteritems():
-            if key not in self.values or not self.values[key]:
-                errors.append(error)
+        for field in self.required_fields:
+            if field not in self.values or not self.values[field]:
+                errors.append(field)
         self.errors = errors
 
     def _parse_attending_value(self):
@@ -130,3 +129,13 @@ class RSVPDatabase():
             args.append(escaped_value)
         args = tuple(args)
         return args
+
+def send_rsvp_email(mail, values):
+    email_message = Message("RSVP Submitted")
+    email_message.sender = "rsvp-noreply@chrisandgitte.com"
+    email_message.recipients = [
+        "chris.laskey@gmail.com", "gvenicx@gmail.com"
+    ]
+    email_template = render_template('email/rsvp.html', **values)
+    email_message.body = email_template
+    mail.send(email_message)
