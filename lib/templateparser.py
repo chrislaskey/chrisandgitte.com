@@ -25,14 +25,14 @@ class TemplateVariableParser():
 
     def _parse_page_title(self):
         uri_segments = self._return_uri_segments()
-        return Utilities().create_page_title(uri_segments)
+        return _PageTitleCreator().get(uri_segments)
     
     def _return_uri_segments(self):
         return self.requestvars.get('uri_segments')[:]
 
     def _parse_body_class(self):
         segments = self._return_uri_segments_without_domain()
-        return Utilities().create_body_class(segments)
+        return _BodyClassCreator().get(segments)
 
     def _return_uri_segments_without_domain(self):
         uri_segments = self._return_uri_segments()
@@ -42,9 +42,43 @@ class TemplateVariableParser():
         else:
             return []
 
-class Utilities():
+class _PageTitleCreator():
 
-    def create_slug(self, text, delimiter=u'-'):
+    def get(self, uri_segments):
+        sections = self._process_page_title_segments(uri_segments)
+        if len(sections) > 1:
+            return ' | '.join(sections)
+        else:
+            return sections[0]
+
+    def _process_page_title_segments(self, uri_segments):
+        sections = []
+        for piece in uri_segments:
+            if piece in ('be', 'en'):
+                continue
+            title = self._create_title_from_slug(piece)
+            sections.append(title)
+        sections.reverse()
+        return sections
+
+    def _create_title_from_slug(self, text):
+        replaced_text = re.sub(r'[-_]+', ' ', text)
+        stripped_text = replaced_text.strip()
+        return stripped_text.title()
+
+class _BodyClassCreator:
+
+    def get(self, segments):
+        classes = ['body']
+        for section in segments:
+            previous_class = classes[-1][:]
+            section_slug = self._create_slug(section)
+            new_class = previous_class + '-{0}'.format(section_slug)
+            classes.append(new_class)
+        classes_string = ' '.join(classes)
+        return classes_string
+
+    def _create_slug(self, text, delimiter=u'-'):
         '''
         Return ascii-only slugs from unicode.
         See: http://flask.pocoo.org/snippets/5/
@@ -62,36 +96,4 @@ class Utilities():
             return unicode(delimiter.join(result))
         except TypeError:
             text = unicode(text)
-            return self.create_slug(text, delimiter)
-
-    def create_title_from_slug(self, text):
-        replaced_text = re.sub(r'[-_]+', ' ', text)
-        stripped_text = replaced_text.strip()
-        return stripped_text.title()
-
-    def create_page_title(self, uri_segments):
-        sections = self._process_page_title_segments(uri_segments)
-        if len(sections) > 1:
-            return ' | '.join(sections)
-        else:
-            return sections[0]
-
-    def _process_page_title_segments(self, uri_segments):
-        sections = []
-        for piece in uri_segments:
-            if piece in ('be', 'en'):
-                continue
-            title = self.create_title_from_slug(piece)
-            sections.append(title)
-        sections.reverse()
-        return sections
-
-    def create_body_class(self, segments):
-        classes = ['body']
-        for section in segments:
-            previous_class = classes[-1][:]
-            section_slug = self.create_slug(section)
-            new_class = previous_class + '-{0}'.format(section_slug)
-            classes.append(new_class)
-        classes_string = ' '.join(classes)
-        return classes_string
+            return self._create_slug(text, delimiter)
