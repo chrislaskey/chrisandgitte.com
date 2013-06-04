@@ -1,27 +1,20 @@
 class RequestParser():
-    " Centralizes the processing of a request "
+
     def __init__(self, request):
         self.request = request
         self.requestvars = {}
-        self.parse_request()
+        self._parse_request()
 
-    def parse_request(self):
+    def _parse_request(self):
         self.parse_request_uri()
 
-    def parse_request_uri(self):
+    def _parse_request_uri(self):
         path = self.request.path.__str__() # excludes domain name
         url = self.request.url.__str__() # includes domain name
         self.requestvars['uri'] = path
-        self.requestvars['uri_segments'] = \
-            _Utilities().return_uri_segments(url)
+        self.requestvars['uri_segments'] = self._parse_into_uri_segments(url)
 
-    def return_requestvars(self):
-        return self.requestvars
-
-
-class _Utilities():
-
-    def return_uri_segments(self, uri):
+    def _parse_into_uri_segments(self, uri):
         '''
         Return a list of uri segments
         Value at index 0 is the domain name
@@ -38,3 +31,6 @@ class _Utilities():
             return uri[cut_from:]
         else:
             return uri
+
+    def return_requestvars(self):
+        return self.requestvars

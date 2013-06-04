@@ -1,6 +1,7 @@
 import re
 from unicodedata import normalize
 
+
 class TemplateVariableParser():
 
     def __init__(self, request, requestvars = {}):
@@ -42,6 +43,7 @@ class TemplateVariableParser():
         else:
             return []
 
+
 class _PageTitleCreator():
 
     def get(self, uri_segments):
@@ -65,6 +67,7 @@ class _PageTitleCreator():
         replaced_text = re.sub(r'[-_]+', ' ', text)
         stripped_text = replaced_text.strip()
         return stripped_text.title()
+
 
 class _BodyClassCreator:
 
