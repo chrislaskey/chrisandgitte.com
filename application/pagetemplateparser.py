@@ -17,16 +17,8 @@ class PageTemplateVariableParser(TemplateVariableParser):
 
     def _parse_templatevars(self):
         self.templatevars['language'] = self.language
-        self.templatevars['is_responsive'] = self.parse_is_responsive()
         self.templatevars['mirror_language_link'] = \
                 self.parse_mirror_language_link()
-
-    def parse_is_responsive(self):
-        cookie = self.request.cookies.get('is_responsive')
-        if cookie == 'true':
-            return True
-        else:
-            return False
 
     def parse_mirror_language_link(self):
         inactive_language = self._return_inactive_language()
