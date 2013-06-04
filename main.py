@@ -5,9 +5,10 @@ Environment().add_virtualenv_site_packages_to_path(__file__)
 
 from flask import Flask, g, render_template, request
 from flask.ext.sendmail import Mail
-from lib.pageprocessing import common_page_processing
-from lib.weddingphotoalbum import WeddingPhotoAlbumImages
-from lib.rsvp import RSVP, send_rsvp_email
+
+from application.pageprocessing import common_page_processing
+from application.weddingphotoalbum import WeddingPhotoAlbumImages
+from application.rsvp import RSVP, send_rsvp_email
 
 app = Flask(__name__)
 mail = Mail(app)

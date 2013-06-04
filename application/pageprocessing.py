@@ -1,6 +1,7 @@
 from flask import g, request
-from lib.requestparser import PageRequestParser
 from lib.templateparser import TemplateVariableParser
+
+from application.pagerequestparser import PageRequestParser
 
 def common_page_processing():
     g.requestvars = _return_page_requestvars()
