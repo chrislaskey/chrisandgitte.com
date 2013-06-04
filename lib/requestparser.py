@@ -1,5 +1,3 @@
-from lib.utilities import Utilities
-
 class RequestParser():
     " Centralizes the processing of a request "
     def __init__(self, request):
@@ -15,25 +13,28 @@ class RequestParser():
         url = self.request.url.__str__() # includes domain name
         self.requestvars['uri'] = path
         self.requestvars['uri_segments'] = \
-            Utilities().return_uri_segments(url)
+            _Utilities().return_uri_segments(url)
 
     def return_requestvars(self):
         return self.requestvars
 
-class PageRequestParser(RequestParser):
 
-    def __init__(self, request):
-        RequestParser.__init__(self, request)
-        self.parse_page()
+class _Utilities():
 
-    def parse_page(self):
-        pagevars = {}
-        pagevars['language'] = self.parse_page_language()
-        self.requestvars.update(pagevars)
+    def return_uri_segments(self, uri):
+        '''
+        Return a list of uri segments
+        Value at index 0 is the domain name
+        '''
+        stripped_protocol = self._strip_http_protocol(uri)
+        raw_segments = stripped_protocol.split('/')
+        filtered_segments = [x for x in raw_segments if x]
+        return filtered_segments
 
-    def parse_page_language(self):
-        uri_segments = self.requestvars.get('uri_segments', [])
-        if len(uri_segments) > 1 and uri_segments[1] in ('be', 'en'):
-            return uri_segments[1]
+    def _strip_http_protocol(self, uri):
+        double_forward_slash_position = uri.find('//')
+        if double_forward_slash_position > 0:
+            cut_from = double_forward_slash_position + 2
+            return uri[cut_from:]
         else:
-            return 'en'
+            return uri
