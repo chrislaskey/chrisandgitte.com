@@ -11,6 +11,13 @@ class RequestParser():
     def _parse_request_uri(self):
         path = self.request.path.__str__() # excludes domain name
         url = self.request.url.__str__() # includes domain name
+
+        # TODO: Parse the full url value and return:
+        # protocol
+        # domain
+        # uri
+        # uri_segments
+        
         self.requestvars['uri'] = path
         self.requestvars['uri_segments'] = self._parse_into_uri_segments(url)
 
