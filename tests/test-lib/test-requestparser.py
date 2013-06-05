@@ -24,13 +24,13 @@ class TestRequestParser:
         url = ''
 
         request = RequestStub().create(url)
-        assert_raises(Exception, RequestParser, request)
+        assert_raises(Exception, RequestParser.parse, request)
 
     def test_invalid_url_raises_exception(self):
         url = 'www.example.com/test/uri.html?one=two'
 
         request = RequestStub().create(url)
-        assert_raises(Exception, RequestParser, request)
+        assert_raises(Exception, RequestParser.parse, request)
 
     def test_valid_url(self):
         url = 'http://www.example.com/test/uri.html?one=two'
@@ -42,9 +42,8 @@ class TestRequestParser:
         }
 
         request = RequestStub().create(url)
-        parser = RequestParser(request)
-        parsed = parser.return_requestvars()
-        assert_equal(parsed, expected)
+        result = RequestParser(request).parse()
+        assert_equal(result, expected)
 
 class RequestStub:
 

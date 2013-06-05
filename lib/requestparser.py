@@ -1,9 +1,12 @@
 class RequestParser():
 
-    def __init__(self, request):
-        self.request = request
+    def __init__(self, flask_request):
+        self.request = flask_request
         self.requestvars = {}
+
+    def parse(self):
         self._parse_request()
+        return self.requestvars
 
     def _parse_request(self):
         self.parsing = self.request.base_url.__str__()
@@ -32,6 +35,3 @@ class RequestParser():
     def _parse_uri(self):
         uri_segments = self.requestvars.get('uri_segments')
         self.requestvars['uri'] = '/' + '/'.join(uri_segments)
-
-    def return_requestvars(self):
-        return self.requestvars
