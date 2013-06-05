@@ -48,7 +48,9 @@ class _PageTitleCreator():
 
     def get(self, uri_segments):
         sections = self._process_page_title_segments(uri_segments)
-        if len(sections) > 1:
+        if not sections:
+            return 'Home'
+        elif len(sections) > 1:
             return ' | '.join(sections)
         else:
             return sections[0]
