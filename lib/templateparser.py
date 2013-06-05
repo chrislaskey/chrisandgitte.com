@@ -73,9 +73,9 @@ class _PageTitleCreator():
 
 class _BodyClassCreator:
 
-    def get(self, segments):
+    def get(self, uri_segments):
         classes = ['body']
-        for section in segments:
+        for section in uri_segments:
             previous_class = classes[-1][:]
             section_slug = self._create_slug(section)
             new_class = previous_class + '-{0}'.format(section_slug)

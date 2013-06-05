@@ -10,7 +10,7 @@ abs_base_dir = os.path.abspath(base_dir)
 Environment().add_virtualenv_site_packages_to_path(abs_base_dir)
 
 from nose.tools import *
-from lib.rsvp import *
+from application.rsvp import *
 
 def query_mock(expected_query, expected_args):
     def method(query, args):
