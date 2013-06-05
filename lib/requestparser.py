@@ -1,20 +1,18 @@
 class RequestParser():
 
-    def __init__(self, flask_request):
+    def parse(self, flask_request):
         self.request = flask_request
-        self.requestvars = {}
-
-    def parse(self):
-        self._parse_request()
-        return self.requestvars
+        return self._parse_request()
 
     def _parse_request(self):
+        self.parsed = {}
         self.parsing = self.request.base_url.__str__()
         self._validate_url()
         self._parse_protocol()
         self._parse_domain()
         self._parse_uri_segments()
         self._parse_uri()
+        return self.parsed
 
     def _validate_url(self):
         has_protocol_string = (self.parsing.find('://') != -1)
@@ -23,15 +21,15 @@ class RequestParser():
 
     def _parse_protocol(self):
         protocol, self.parsing = self.parsing.split('://')
-        self.requestvars['protocol'] = protocol
+        self.parsed['protocol'] = protocol
 
     def _parse_domain(self):
         self._segments = self.parsing.split('/')
-        self.requestvars['domain'] = self._segments[0]
+        self.parsed['domain'] = self._segments[0]
 
     def _parse_uri_segments(self):
-        self.requestvars['uri_segments'] = self._segments[1:]
+        self.parsed['uri_segments'] = self._segments[1:]
 
     def _parse_uri(self):
-        uri_segments = self.requestvars.get('uri_segments')
-        self.requestvars['uri'] = '/' + '/'.join(uri_segments)
+        uri_segments = self.parsed.get('uri_segments')
+        self.parsed['uri'] = '/' + '/'.join(uri_segments)

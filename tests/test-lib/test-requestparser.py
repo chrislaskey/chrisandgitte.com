@@ -42,7 +42,7 @@ class TestRequestParser:
         }
 
         request = RequestStub().create(url)
-        result = RequestParser(request).parse()
+        result = RequestParser().parse(request)
         assert_equal(result, expected)
 
 class RequestStub:
