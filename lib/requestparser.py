@@ -6,7 +6,7 @@ class RequestParser():
         self._parse_request()
 
     def _parse_request(self):
-        self.parse_request_uri()
+        self._parse_request_uri()
 
     def _parse_request_uri(self):
         path = self.request.path.__str__() # excludes domain name
