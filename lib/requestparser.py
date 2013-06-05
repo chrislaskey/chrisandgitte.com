@@ -24,8 +24,13 @@ class RequestParser():
         self.parsed['protocol'] = protocol
 
     def _parse_domain(self):
-        self._segments = self.parsing.split('/')
+        self._parse_into_segments()
         self.parsed['domain'] = self._segments[0]
+
+    def _parse_into_segments(self):
+        segments = self.parsing.split('/')
+        filtered_segments = [x for x in segments if x]
+        self._segments = filtered_segments
 
     def _parse_uri_segments(self):
         self.parsed['uri_segments'] = self._segments[1:]
