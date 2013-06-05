@@ -6,38 +6,32 @@ class RequestParser():
         self._parse_request()
 
     def _parse_request(self):
-        self._parse_request_uri()
+        self.parsing = self.request.base_url.__str__()
+        self._validate_url()
+        self._parse_protocol()
+        self._parse_domain()
+        self._parse_uri_segments()
+        self._parse_uri()
 
-    def _parse_request_uri(self):
-        path = self.request.path.__str__() # excludes domain name
-        url = self.request.url.__str__() # includes domain name
+    def _validate_url(self):
+        has_protocol_string = (self.parsing.find('://') != -1)
+        if not has_protocol_string:
+            raise Exception('Invalid URL')
 
-        # TODO: Parse the full url value and return:
-        # protocol
-        # domain
-        # uri
-        # uri_segments
-        
-        self.requestvars['uri'] = path
-        self.requestvars['uri_segments'] = self._parse_into_uri_segments(url)
+    def _parse_protocol(self):
+        protocol, self.parsing = self.parsing.split('://')
+        self.requestvars['protocol'] = protocol
 
-    def _parse_into_uri_segments(self, uri):
-        '''
-        Return a list of uri segments
-        Value at index 0 is the domain name
-        '''
-        stripped_protocol = self._strip_http_protocol(uri)
-        raw_segments = stripped_protocol.split('/')
-        filtered_segments = [x for x in raw_segments if x]
-        return filtered_segments
+    def _parse_domain(self):
+        self._segments = self.parsing.split('/')
+        self.requestvars['domain'] = self._segments[0]
 
-    def _strip_http_protocol(self, uri):
-        double_forward_slash_position = uri.find('//')
-        if double_forward_slash_position > 0:
-            cut_from = double_forward_slash_position + 2
-            return uri[cut_from:]
-        else:
-            return uri
+    def _parse_uri_segments(self):
+        self.requestvars['uri_segments'] = self._segments[1:]
+
+    def _parse_uri(self):
+        uri_segments = self.requestvars.get('uri_segments')
+        self.requestvars['uri'] = '/' + '/'.join(uri_segments)
 
     def return_requestvars(self):
         return self.requestvars
