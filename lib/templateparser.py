@@ -1,50 +1,38 @@
 import re
 from unicodedata import normalize
+from lib.requestparser import RequestParser
 
+class TemplateVariableParser:
 
-class TemplateVariableParser():
-
-    def __init__(self, request, requestvars = {}):
-        self._set_classvars(request, requestvars)
-
-    def _set_classvars(self, request, requestvars):
-        self.request = request
-        self.requestvars = requestvars
-        self.language = requestvars.get('language', 'en')
+    def __init__(self):
         self.templatevars = {}
 
-    def set_templatevar(self, name, value):
+    def set(self, name, value):
         self.templatevars[name] = value
 
-    def return_templatevars(self):
+    def parse(self, request):
+        self._parse_request(request)
         self._parse_templatevars()
         return self.templatevars
 
+    def _parse_request(self, request):
+        parsed_request = RequestParser().parse(request)
+        self.templatevars.update(parsed_request)
+
     def _parse_templatevars(self):
-        self.templatevars['page_title'] = self._parse_page_title()
-        self.templatevars['body_class'] = self._parse_body_class()
+        segments = self.templatevars.get('uri_segments')[:]
+        self._set_page_title(segments)
+        self._set_body_class(segments)
 
-    def _parse_page_title(self):
-        uri_segments = self._return_uri_segments()
-        return _PageTitleCreator().get(uri_segments)
-    
-    def _return_uri_segments(self):
-        return self.requestvars.get('uri_segments')[:]
+    def _set_page_title(self, segments):
+        page_title = _PageTitleCreator().get(segments)
+        self.set('page_title', page_title)
 
-    def _parse_body_class(self):
-        segments = self._return_uri_segments_without_domain()
-        return _BodyClassCreator().get(segments)
+    def _set_body_class(self, segments):
+        body_class = _BodyClassCreator().get(segments)
+        self.set('body_class', body_class)
 
-    def _return_uri_segments_without_domain(self):
-        uri_segments = self._return_uri_segments()
-        if len(uri_segments) > 1:
-            del(uri_segments[0])
-            return uri_segments
-        else:
-            return []
-
-
-class _PageTitleCreator():
+class _PageTitleCreator:
 
     def get(self, uri_segments):
         sections = self._process_page_title_segments(uri_segments)

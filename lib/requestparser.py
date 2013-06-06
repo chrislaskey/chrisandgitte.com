@@ -1,4 +1,4 @@
-class RequestParser():
+class RequestParser:
 
     def parse(self, flask_request):
         self.request = flask_request

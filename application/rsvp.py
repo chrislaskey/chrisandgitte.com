@@ -55,7 +55,7 @@ class RSVP:
         values['date'] = datetime.now().isoformat()
         return values
 
-class RSVPFormParser():
+class RSVPFormParser:
 
     required_fields = ['attending', 'name']
     attending_field = 'attending'
@@ -90,7 +90,7 @@ class RSVPFormParser():
                 attending = True
         self.attending = attending
 
-class RSVPDatabase():
+class RSVPDatabase:
 
     columns = [
         'attending',

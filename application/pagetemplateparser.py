@@ -1,28 +1,38 @@
 from lib.templateparser import TemplateVariableParser
 
-class PageTemplateVariableParser(TemplateVariableParser):
+class PageTemplateVariableParser:
 
-    parent = TemplateVariableParser
+    def __init__(self):
+        self.templatevars = {}
 
-    def __init__(self, request, requestvars = {}):
-        self.parent.__init__(self, request, requestvars)
-
-    def set_templatevar(self, name, value):
+    def set(self, name, value):
         self.templatevars[name] = value
 
-    def return_templatevars(self):
-        self.parent._parse_templatevars(self)
+    def parse(self, request):
+        self._add_core_templatevars(request)
         self._parse_templatevars()
         return self.templatevars
 
-    def _parse_templatevars(self):
-        self.templatevars['language'] = self.language
-        self.templatevars['mirror_language_link'] = \
-                self.parse_mirror_language_link()
+    def _add_core_templatevars(self, request):
+        vars = TemplateVariableParser().parse(request)
+        self.templatevars.update(vars)
 
-    def parse_mirror_language_link(self):
+    def _parse_templatevars(self):
+        self.templatevars['language'] = self._parse_language()
+        self.templatevars['mirror_language_link'] = \
+                self._parse_mirror_language_link()
+
+    def _parse_language(self):
+        uri_segments = self.templatevars.get('uri_segments')[:]
+        if not uri_segments:
+            language = 'en'
+        else:
+            language = uri_segments[0]
+        return language
+
+    def _parse_mirror_language_link(self):
         inactive_language = self._return_inactive_language()
-        uri_segments = self._return_uri_segments_without_domain()
+        uri_segments = self.templatevars.get('uri_segments')
         if len(uri_segments) > 0 and uri_segments[0] in ('be', 'en'):
             uri_segments[0] = inactive_language
         else:
@@ -30,7 +40,8 @@ class PageTemplateVariableParser(TemplateVariableParser):
         return '/' + '/'.join(uri_segments)
 
     def _return_inactive_language(self):
-        if self.language == 'en':
+        language = self.templatevars['language']
+        if language == 'en':
             return 'be'
         else:
             return 'en'
