@@ -17,6 +17,7 @@ class TemplateVariableParser:
 
     def _parse_request(self, request):
         parsed_request = RequestParser().parse(request)
+        parsed_request['form'] = request.form
         self.templatevars.update(parsed_request)
 
     def _parse_templatevars(self):
@@ -31,6 +32,7 @@ class TemplateVariableParser:
     def _set_body_class(self, segments):
         body_class = _BodyClassCreator().get(segments)
         self.set('body_class', body_class)
+
 
 class _PageTitleCreator:
 
