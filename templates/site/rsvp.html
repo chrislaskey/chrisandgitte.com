@@ -56,7 +56,13 @@
 		'be': "Diner beperkingen"
 	},
 	'allergies_helper_text': {
-		'en': "Prefer red meat? Don't like fish? Are a vegetarian? Allergic to gluten? Let us know!",
+		'en': "<p>Please indicate each guest's entrée choice and any food allergies:</p>
+				<ul>
+					<li>Filet of Sole stuffed with Maine Crabmeat</li>
+					<li>Petite Filet Mignon</li>
+					<li>Surf and turf (Filet Mignon and Stuffed Sole)</li>
+					<li>Roasted vegetables with quinoa (vegetarian/vegan/gluten free)</li>
+				</ul>",
 		'be': "Een vegetariër? Allergisch voor gluten? Liever rood vlees? Hou je niet van vis? Laat het ons weten!"
 	},
 	'comments_question': {
@@ -132,7 +138,7 @@
 
 % macro _content(key)
 {% if key in page_content -%}
-{{ page_content[key][language] }}
+{{ page_content[key][language]|safe }}
 {%- endif %}
 % endmacro
 
