@@ -1,6 +1,6 @@
 % macro _value(name)
-{% if name in post -%}
-	{{ post[name] }}
+{% if name in form -%}
+	{{ form[name] }}
 {%- endif %}
 % endmacro
 
