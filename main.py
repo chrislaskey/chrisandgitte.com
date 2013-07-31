@@ -50,6 +50,11 @@ def guest_book(lang):
     common_page_processing()
     return render_template('site/guest-book.html', **g.templatevars)
 
+@app.route('/<lang>/rehearsal-dinner/')
+def rehearsal_dinner(lang):
+    common_page_processing()
+    return render_template('site/rehearsal-dinner.html', **g.templatevars)
+
 @app.route('/<lang>/rsvp/', methods = ['GET', 'POST'])
 def rsvp(lang):
     common_page_processing()
