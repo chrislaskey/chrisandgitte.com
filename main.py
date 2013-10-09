@@ -3,12 +3,11 @@
 from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path(__file__)
 
-from flask import Flask, g, render_template, request
+from flask import Flask, g, render_template, request, redirect, url_for
 from flask.ext.sendmail import Mail
 
 from application.pageprocessing import common_page_processing
 from application.weddingphotoalbum import WeddingPhotoAlbumImages
-from application.rsvp import RSVP, send_rsvp_email
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -57,14 +56,7 @@ def rehearsal_dinner(lang):
 
 @app.route('/<lang>/rsvp/', methods = ['GET', 'POST'])
 def rsvp(lang):
-    common_page_processing()
-    if request.method == 'POST':
-        values = request.form.copy()
-        new_vars = RSVP().\
-                   parse_and_save_request_and_return_templatevars(values)
-        g.templatevars.update(new_vars)
-        send_rsvp_email(mail, g.templatevars)
-    return render_template('site/rsvp.html', **g.templatevars)
+    return redirect(url_for('homepage'))
 
 @app.route('/<lang>/save-the-date/')
 def save_the_date(lang):
