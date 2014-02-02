@@ -1,13 +1,4 @@
-#!/usr/bin/env python
-
-import os
-import sys
-this_dir = os.path.dirname(__file__)
-sys.path.insert(0, this_dir)
-os.chdir(this_dir)
-
-from lib.environment import Environment
-Environment().add_virtualenv_site_packages_to_path(__file__)
+#!/usr/lib/virtualenvs/chrisandgitte/bin/python
 
 from main import app as application
 from flask.ext.sendmail import Mail
