@@ -1,7 +1,4 @@
-#!/usr/bin/python
-
-from lib.environment import Environment
-Environment().add_virtualenv_site_packages_to_path()
+#!/usr/lib/virtualenvs/chrisandgitte/bin/python
 
 from flup.server.fcgi import WSGIServer
 from main import app
