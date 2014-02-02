@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/lib/virtualenvs/chrisandgitte/bin/python
 
 from lib.environment import Environment
 Environment().add_virtualenv_site_packages_to_path(__file__)
