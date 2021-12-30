@@ -1,5 +1,7 @@
 *.pyc
 .DS_Store
+.venv*
+environment.json
 production.log
 rsvp.db
 .coverage

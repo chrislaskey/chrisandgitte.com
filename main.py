@@ -1,4 +1,7 @@
-#!/usr/lib/virtualenvs/chrisandgitte/bin/python
+#!/usr/bin/env python
+
+from lib.environment import Environment
+Environment().add_virtualenv_site_packages_to_path(__file__)
 
 from flask import Flask, g, render_template, request, redirect, url_for
 from flask.ext.sendmail import Mail
